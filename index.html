@@ -99,6 +99,29 @@
 		}
 
 
+	section {
+	    padding: 30px;
+	}
+
+	header + section + section:after {
+	    position: absolute;
+	    width: 100vw;
+	    content:"";
+	    background: rgba(0,0,0,0.05);
+	    height: 100%;
+	    left: calc( 50% - 50vw );
+	    z-index: -1;
+	    top: 0;
+	    background-image: url("citypano.jpg");
+	    background-size: cover;
+	    background-position: center;
+	    opacity: 0.2;
+	    filter: grayscale(1);
+	}
+
+
+
+
 	</style>
 </head>
 <body>
@@ -127,5 +150,6 @@
 		<p>{{SoftwareName}} is an agent based microsimulation software</p>
 
 	</section>
+	<section></section>
 </body>
 </html>
