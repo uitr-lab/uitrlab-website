@@ -39,13 +39,13 @@
 		    max-width: 1000px;
 		}
 
-		section>* {
-		    text-align: -webkit-auto;
+		header + section>* {
+			max-width: 600px;
+			margin-left: auto;
+    		margin-right: auto;
 		}
-
+		
 		section>h1 {
-		    text-align: center;
-		    font-weight: 400;
 		    color: #333333;
 		    font-size: 30px;
 		}
@@ -60,10 +60,34 @@
 		    width: 115px;
 		    height: 115px;
 		    color: transparent;
+
+			background-position: 32px 14px;
+			margin-left: -15px;
+			min-width: 115px;
+
 		}
 
 		div#ubc7-logo>a {
 		    color: transparent;
+		}
+
+		header nav {
+			position: absolute;
+			right: 10px;
+			top: 10px;
+		}
+
+		header nav a {
+			display: inline-block;
+			padding: 10px 20px;
+			text-decoration: none;
+			color: #333333;
+			font-size: 20px;
+			backdrop-filter: blur(4px);
+			border-radius: 3px;
+			background-color: #ffffff1c;
+			margin: 5px;
+			text-shadow: 0 0 10px #ffffff9e, 0 0 5px #ffffff9e;
 		}
 
 
@@ -80,9 +104,19 @@
 		<div id="ubc7-logo">
             <a href="https://www.ubc.ca" title="The University of British Columbia (UBC)">The University of British Columbia</a>
         </div>
+
+		<nav>
+			<a href="https://uitr.ok.ubc.ca/" >UiTR Lab</a>
+			<a href="https://caaf.uitrlab.ok.ubc.ca/" >Climate Action Awareness</a>
+			<a href="https://survey.uitrlab.ok.ubc.ca/" >Survey Tool</a>
+			<a href="https://geoportal.uitrlab.ok.ubc.ca/" >Geoportal</a>
+		</nav>
+
 	</header>
 	<section>
-		<h1>UiTR Lab Software | Transportation Micro-simulation Software</h1>
+		<h1>UiTR Lab Software</h1>
+		<h2>Transportation Micro-simulation Software</h2>
+		<p>{{SoftwareName}} is an agent based microsimulation software</p>
 
 	</section>
 </body>
