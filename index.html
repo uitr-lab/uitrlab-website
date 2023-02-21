@@ -73,16 +73,20 @@
 			top: 10px;
 		}
 
-		header nav a {
+		
+		nav a, a.btn{
 			display: inline-block;
 			padding: 10px 20px;
 			text-decoration: none;
 			color: #333333;
 			font-size: 20px;
-			backdrop-filter: blur(4px);
 			border-radius: 3px;
-			background-color: #ffffff1c;
 			margin: 5px;
+		}
+
+		header nav a {
+			backdrop-filter: blur(4px);
+			background-color: #ffffff1c;
 			text-shadow: 0 0 10px #ffffff9e, 0 0 5px #ffffff9e;
 		}
 
@@ -94,6 +98,11 @@
 			box-shadow: 0 0 3px #0000007a;
 		}
 
+		a.download-btn{
+			background: #145cab;
+    		color: white;
+		}
+		
 		section {
 		    text-align: center;
 		    margin: auto;
@@ -105,21 +114,28 @@
 		    min-height: 300px;
 		}
 
-	header + section + section:after {
-	    position: absolute;
-	    width: 100vw;
-	    content:"";
-	    background: rgba(0,0,0,0.05);
-	    height: 100%;
-	    left: calc( 50% - 50vw );
-	    z-index: -1;
-	    top: 0;
-	    background-image: url("citypano.jpg");
-	    background-size: cover;
-	    background-position: center;
-	    opacity: 0.2;
-	    filter: grayscale(1);
-	}
+		section>h1:first-child, section>h2:first-child 
+		{
+			margin-top: 80px;
+		}
+
+		section.city-pano:after {
+			position: absolute;
+			width: 100vw;
+			content:"";
+			background: rgba(0,0,0,0.05);
+			height: 100%;
+			left: calc( 50% - 50vw );
+			z-index: -1;
+			top: 0;
+			background-image: url("citypano.jpg");
+			background-size: cover;
+			background-position: center;
+			opacity: 0.2;
+			filter: grayscale(1);
+			border-top: 1px solid black;
+			border-bottom: 1px solid black;
+		}
 
 
 
@@ -147,11 +163,22 @@
 
 	</header>
 	<section>
-		<h1>UiTR Lab Software</h1>
-		<h2>Transportation Micro-simulation Software</h2>
-		<p>{{SoftwareName}} is an agent based microsimulation software</p>
+		<h1>UiTR lab software</h1>
+		<h2>Transportation micro-simulation engine</h2>
+		<p>{{SoftwareName}} is an agent based microsimulation application, designed to simulate </p>
 
 	</section>
-	<section></section>
+	<section class="city-pano">
+		<h2>Engine overview and capabilities</h2>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+		<a href="" class="download-btn btn">Download</a>
+
+	</section>
+	<section class="">
+		<h2>Survey Tool</h2>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+		<a href="https://survey.uitrlab.ok.ubc.ca/survey-tool-demo" class="more-btn btn">Try the demo</a>
+
+	</section>
 </body>
 </html>
