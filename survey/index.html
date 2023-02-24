@@ -3,8 +3,12 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>UiTR Lab Software | Transportation Micro-simulation Software</title>
+	<title>UiTR Survey Tool</title>
 	<style type="text/css">
+
+		@charset "utf-8";
+		@import url("/css/font-awesome.min.css");
+
 		
 		header {
 		    height: 300px;
@@ -138,7 +142,71 @@
 			border-bottom: 1px solid black;
 		}
 
+		section.banner-strip {
+			min-height: unset;
+    		height: 60px;
+			padding: 5px;
+		}
 
+		section.banner-strip:after {
+			position: absolute;
+			width: 100vw;
+			content: "";
+			background: rgb(68 212 97 / 20%);
+			height: 100%;
+			left: calc( 50% - 50vw );
+			z-index: -1;
+			top: 0;
+		
+			background-size: cover;
+			background-position: center;
+			opacity: 0.2;
+			
+			border-top: 1px solid black;
+			border-bottom: 1px solid black;
+		}
+
+		section.banner-strip>* {
+			display: inline-block;
+			margin-top: 10px !important;
+		}
+
+		section.banner-strip>a {
+			color: #205daa;
+			font-weight: 600;
+		}
+
+		section.banner-strip>h1 {
+			font-size:25px;
+		}
+
+
+		a.download-btn.git-btn.btn:before {
+			content: "\0f09b";
+			font-family: 'FontAwesome';
+			margin-right: 10px;
+		}
+
+		a.download-btn.git-btn.btn:before {
+			content: "\0f09b";
+		}
+
+
+		section>article {
+			display: inline-block;
+			width: 200px;
+			height: 200px;
+			background: white;
+			vertical-align: top;
+			box-shadow: 0 0 4px rgba(0,0,0,0.3);
+			border-radius: 5px;
+			margin: 10px;
+		}
+
+		section>article>h2 {
+			font-weight: 400;
+			color: #444444;
+		}
 
 
 	</style>
@@ -161,15 +229,25 @@
 		</nav>
 
 	</header>
+	<section class="banner-strip">
+		<h1>Current Working Survey Design</h1>
+		<a href="https://survey.uitrlab.ok.ubc.ca/current" class="btn">View The Survey</a>
+
+	</section>
 	<section>
 		<h1>UiTR Survey Tool</h1>
 		<p>The UiTR Survey tool is a visual interface for quickly designing and publishing complex surveys, and forms.</p>
 		<a href="https://survey.uitrlab.ok.ubc.ca/survey-tool-demo" class="download-btn btn">Use the builder</a>
-
+		<a href="https://github.com/uitr-lab/js-survey-builder/archive/refs/tags/alpha.zip" class="download-btn btn">Download</a>
+		<a href="https://github.com/uitr-lab/js-survey-builder" class="download-btn git-btn btn">Git</a>
 	</section>
 	<section class="city-pano">
 		<h1>Documentation and tutorials</h1>
-		<p>How to use the tool</p>
+		<article><h2>Create Pages</h2><img/><p></p></article>
+		<article><h2>Adding fields</h2><img/><p></p></article>
+		<article><h2>Templates and markdown</h2><img/><p></p></article>
+		<article><h2>Navigation</h2><img/><p></p></article>
+		<a href="https://survey.uitrlab.ok.ubc.ca/documentation" class="more-btn btn">All Documentation</a>
 	</section>
 	<section class="">
 		<h1>About our survey</h1>
