@@ -201,11 +201,44 @@
 			box-shadow: 0 0 4px rgba(0,0,0,0.3);
 			border-radius: 5px;
 			margin: 10px;
+
+			position: relative;
+   			z-index: 1;
 		}
 
 		section>article>h2 {
 			font-weight: 400;
 			color: #444444;
+			text-shadow: 0 0 3px white, 0 0 10px white;
+    		backdrop-filter: blur(5px);
+
+		}
+
+
+		.external.youtube {
+		    position: absolute;
+		    width: 100%;
+		    height: 100%;
+		    z-index: -1;
+		    top: 0;
+		    left: 0;
+		    background-size: cover;
+		    filter: grayscale(0.5) opacity(0.5); 
+		    background-position: center;
+		}
+
+		.external.youtube>span {
+		    display: none;
+		}
+
+		.external.youtube:after {
+		    content: "\0f16a";
+		    font-family: 'FONTAWESOME';
+		    position: absolute;
+		    top: calc( 50% - 25px );
+		    left: calc( 50% - 25px );
+		    font-size: 60px;
+		    color: crimson;
 		}
 
 
@@ -243,10 +276,10 @@
 	</section>
 	<section class="city-pano">
 		<h1>Documentation and tutorials</h1>
-		<article><h2>Create Pages</h2><img/><p></p></article>
-		<article><h2>Adding fields</h2><img/><p></p></article>
-		<article><h2>Templates and markdown</h2><img/><p></p></article>
-		<article><h2>Navigation</h2><img/><p></p></article>
+		<article><h2>Create Pages</h2><div class="external youtube" style="background-image: url(&quot;https://i.ytimg.com/vi/i27i3I5sk1I/maxresdefault.jpg&quot;);"><span class="title">Survey Builder: Adding Pages - YouTube</span></div><p></p></article>
+		<article><h2>Adding fields</h2><div class="external youtube" style="background-image: url(&quot;https://i.ytimg.com/vi/E8b6-lWYx0Y/maxresdefault.jpg&quot;);"><span class="title">Survey Builder: Adding fields - YouTube</span></div><p></p></article>
+		<article><h2>Templates and markdown</h2><div class="external youtube" style="background-image: url(&quot;https://i.ytimg.com/vi/v4rrqQWO3v8/maxresdefault.jpg&quot;);"><span class="title">Survey Builder: Templates and markdown - YouTube</span></div><p></p></article>
+		<article><h2>Navigation</h2><div class="external youtube" style="background-image: url(&quot;https://i.ytimg.com/vi/uI-Hbou6mN0/maxresdefault.jpg&quot;);"><span class="title">Survey Builder: Navigation - YouTube</span></div><p></p></article>
 		<a href="https://survey.uitrlab.ok.ubc.ca/documentation" class="more-btn btn">All Documentation</a>
 	</section>
 	<section class="">
