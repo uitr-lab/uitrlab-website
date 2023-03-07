@@ -36,7 +36,7 @@
 		
 
 		header + section>* {
-			max-width: 600px;
+			
 			margin-left: auto;
     		margin-right: auto;
 		}
@@ -44,6 +44,11 @@
 		section>h1 {
 		    color: #333333;
 		    font-size: 30px;
+		}
+
+		section.main>h1 {
+		    font-size: 40px;
+		    color: #135cab;
 		}
 
 
@@ -140,6 +145,64 @@
 		}
 
 
+		section.feature:after {
+			position: absolute;
+			width: 100vw;
+			content:"";
+			background: rgba(0,0,0,0.05);
+			height: 100%;
+			left: calc( 50% - 50vw );
+			z-index: -1;
+			top: 0;
+			opacity: 0.2;
+			border-top: 1px solid black;
+			border-bottom: 1px solid black;
+		}
+
+		section>img:first-child {
+		    float: left;
+		    height: 200px;
+		    border-radius: 5px;
+		    box-shadow: 0 0 4px #000000b3;
+		    margin: 14px 60px;
+		}
+
+		section.right-img{
+			text-align: right;
+		}
+
+		section.left-img{
+			text-align: left;
+		}
+
+		section.right-img>img:first-child {
+			float: right;
+		}
+
+
+		section ul {
+		    text-align: left;
+		    line-height: 30px;
+		}
+
+		section.right-img ul {
+			text-align: right;
+			list-style: none;
+		}
+
+		section>img:first-child + h2 {
+		    text-align: left;
+		}
+
+		section.right-img>img:first-child + h2 {
+		    text-align: right;
+		}
+
+
+
+		section p {
+		    line-height: 27px;
+		}
 
 
 	</style>
@@ -164,26 +227,38 @@
 		</nav>
 
 	</header>
-	<section>
-		<h1>UiTR lab software</h1>
-		<h2>Transportation micro-simulation engine</h2>
-		<p>{{SoftwareName}} is an agent based microsimulation application, designed to simulate </p>
+	<section class="main">
+		
+		<h1>UiTR Lab Software and Tools</h1>
+		<h2>Transportation simulation Geoportal</h2>
+		<p>An agent-based integrated transportation and land use modelling system that integrates population demographics, location choice, vehicle ownership, and daily activities within a unified modelling framework to predict the changes in land use pattern, transportation network and the environment over time and space for an entire urban region </p>
 
 	</section>
 	<section class="city-pano">
-		<h2>Engine overview and capabilities</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-		<a href="" class="download-btn btn">Download</a>
+		<img src="okanagan.png" />
+		<h2>Geoportal overview and capabilities</h2>
+		 <ul>
+			<li>Test the impacts of unprecedented events such as COVID-19</li>
+			<li>Disentangle the interactions among transportation, and individual decisions</li>
+			<li>Emissions and residential energy consumption</li>
+		</ul> 
+		<a href="https://geoportal.uitrlab.ok.ubc.ca/" class="download-btn btn">View</a>
 
 	</section>
-	<section class="">
+	<section class="right-img">
+		<img src="filetransfer.png" />
 		<h2>File Transfer Tool</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+		 <ul>
+			<li>Share sensitive datasets with our data analysts</li>
+			<li>Hosted securely on UBC servers</li>
+		</ul> 
+		<a href="https://uploader.uitrlab.ok.ubc.ca" class="more-btn btn">View more</a>
+		
 	</section>
-	<section class="">
+	<section class="feature">
 		<h2>Survey Tool</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-		<a href="https://survey.uitrlab.ok.ubc.ca/survey-tool-demo" class="more-btn btn">Try the demo</a>
+		<p>The UiTR Survey tool is a visual interface for quickly designing and publishing complex surveys, and forms.</p>
+		<a href="https://survey.uitrlab.ok.ubc.ca" class="more-btn btn">View more</a><a href="https://survey.uitrlab.ok.ubc.ca/survey-tool-demo" class="more-btn btn">Try the demo</a>
 
 	</section>
 </body>
