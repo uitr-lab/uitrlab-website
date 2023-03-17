@@ -9,7 +9,7 @@
          "items": [
             {
                "type": "markdown",
-               "text": "## Some other title\n\n### About this survey\n\nThis survey is being conducted by the UiTR lab\n\n&nbsp;\n\n### Instructions\n\n - Add members of your family\n - Record trips taken every day, for each family member \n\n&nbsp;\n\n### Privacy\n\n - your data is hosted on secure servers at UBC\n - your data will only be accessed by approved researchers\n&nbsp;\n\n&nbsp;\n\n&nbsp;\n\n"
+               "text": "## Climate Action Awareness | Transit Survey\n\n### About this survey\n\nThis survey is being conducted by the UiTR lab\n\n&nbsp;\n\n### Instructions\n\n - Add members of your family\n - Record trips taken every day, for each family member \n\n&nbsp;\n\n### Privacy\n\n - your data is hosted on secure servers at UBC\n - your data will only be accessed by approved researchers\n&nbsp;\n\n&nbsp;\n\n&nbsp;\n\n"
             },
             {
                "type": "defaultData",
@@ -295,7 +295,7 @@
                   },
                   {
                      "type": "defaultData",
-                     "data": "{ \n\n  \n   \"memberName\":\"Jack\",\n   \"vehicles\":\"a, b, c\",\n   \"vehicleLabels\":\"Toyota Matrix, Ford F150, Nissan LEAF\",\n\n   \"activityTypes\": \"inHome, atWork, atSchool, other\", \n   \"activityTypeLabels\": \"Inasdf, At work, At School, other\",\n\n   \"inHomeActivities\":\"working, online, onlineClass, other\",\n   \"inHomeActivityLabels\":[\n        \"Working at home\", \n        \"Online activities\", \n        \"Online classes\", \n        \"All other - sleeping, meals etc.\"\n   ],\n\n\n   \n\n\n   \"atWorkActivities\":\"working, other\",\n   \"atWorkActivityLabels\":\"Working, All other activities\",\n\n   \"atSchoolActivities\":\"class, other\",\n   \"atSchoolActivityLabels\":\"Attending class, All other activities\",\n\n   \"otherActivities\":\"shopping, errands\",\n   \"otherActivityLabels\":\"Routine shopping, Household errands\",\n\n   \"travelTypes\":\"autoDriver, autoPassenger\",\n   \"travelTypeLabels\":\"Auto Driver, Auto Passenger\",\n \n   \"travelWith\":\"alone, partner\",\n   \"travelWithLabels\":\"Alone, Spouse/Partner\",\n\n\n\n    \"activityCategory0\": \"inHome\",\n    \"inHomeActivity0\": \"other\",\n    \"startTime0\": \"03:00\",\n    \"startLocation0\": \"Home Address\",\n    \"endTime0\": \"09:00\"\n\n\n}"
+                     "data": "{ \n\n  \n   \"memberName\":\"Jack\",\n   \"vehicles\":\"a, b, c\",\n   \"vehicleLabels\":\"Toyota Matrix, Ford F150, Nissan LEAF\",\n\n   \"activityTypes\": \"inHome, atWork, atSchool, other\", \n   \"activityTypeLabels\": \"At Home, At work, At School, other\",\n\n   \"inHomeActivities\":\"working, online, onlineClass, other\",\n   \"inHomeActivityLabels\":[\n        \"Working at home\", \n        \"Online activities\", \n        \"Online classes\", \n        \"All other - sleeping, meals etc.\"\n   ],\n\n\n   \n\n\n   \"atWorkActivities\":\"working, other\",\n   \"atWorkActivityLabels\":\"Working, All other activities\",\n\n   \"atSchoolActivities\":\"class, other\",\n   \"atSchoolActivityLabels\":\"Attending class, All other activities\",\n\n   \"otherActivities\":\"shopping, errands\",\n   \"otherActivityLabels\":\"Routine shopping, Household errands\",\n\n   \"travelTypes\":\"autoDriver, autoPassenger\",\n   \"travelTypeLabels\":\"Auto Driver, Auto Passenger\",\n \n   \"travelWith\":\"alone, partner\",\n   \"travelWithLabels\":\"Alone, Spouse/Partner\",\n\n\n\n    \"activityCategory0\": \"inHome\",\n    \"inHomeActivity0\": \"other\",\n    \"startTime0\": \"03:00\",\n    \"startLocation0\": \"Home Address\",\n    \"endTime0\": \"09:00\"\n\n\n}"
                   },
                   {
                      "type": "script",
@@ -503,7 +503,7 @@
                ]
             }
          ],
-         "navigationLogic": "if(formData.members.i<formData.members.total-1){\n   formData.members.i++;\n   renderer.setFormValue('members', formData.members);\n   return 'cb46d';\n}\nreturn '8db4c';",
+         "navigationLogic": "\nfetch('https://survey.uitrlab.ok.ubc.ca/current/submit.php', {\n    method: \"POST\", \n    cache: \"no-cache\",\n    headers: {\n      \"Content-Type\": \"application/json\",\n    },\n    body: JSON.stringify(formData), \n  });\n\nif(formData.members.i<formData.members.total-1){\n   formData.members.i++;\n   renderer.setFormValue('members', formData.members);\n   return 'cb46d';\n}\nreturn '8db4c';",
          "then": "goto node 0",
          "nodes": [
             {
