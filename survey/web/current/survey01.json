@@ -77,10 +77,6 @@
                "type": "set",
                "items": [
                   {
-                     "type": "script",
-                     "script": "return fetch('https://survey.uitrlab.ok.ubc.ca/config/householdOptions.json',{\n    mode: \"no-cors\", // no-cors, *cors, same-origin\n    cache: \"no-cache\",\n    credentials: \"omit\",\n}).then(function(resp){\n return resp.json();\n\n}).then(function(json){\n\n renderer.setFormValue('_config', json);\n\n}).catch(console.error)"
-                  },
-                  {
                      "type": "markdown",
                      "text": "## Household Details"
                   },
@@ -126,19 +122,19 @@
                         {
                            "fieldName": "homeType",
                            "type": "option",
-                           "values": "{{_config.homeType|keys}}",
+                           "values": "i,ii,iii,iv,v,vi,vii,viii",
                            "defaultValue": "",
-                           "labels": "{{_config.homeType}}",
+                           "labels": "Single detached Home, Semi-detached home, Row House or townhouse, Apartment building with 5 stories and more, Apartment building with fewer than 5 stories, Apartment duplex,Movable dwelling (mobile home), Other (please specify)",
                            "label": "Which best describes your home?"
                         },
                         {
                            "type": "fieldset",
                            "legend": "",
                            "classNames": "",
-                           "conditionScript": "return pageData.homeType===\"{{_config.homeType|length - 1}}\"",
+                           "conditionScript": "return pageData.homeType==='viii'",
                            "items": [
                               {
-                                 "fieldName": "homeOtherType",
+                                 "fieldName": "homeType",
                                  "type": "textfield",
                                  "label": "Other Type",
                                  "placeholder": "home type",
@@ -172,9 +168,9 @@
                         {
                            "fieldName": "ownerStatus",
                            "type": "radio",
-                           "values": "{{_config.ownerStatus|keys}}",
+                           "values": "owner, renter",
                            "defaultValue": "",
-                           "labels": "{{_config.ownerStatus}}",
+                           "labels": "Owner, Renter",
                            "label": "What is your current home ownership status?"
                         }
                      ]
@@ -218,9 +214,9 @@
                         {
                            "fieldName": "grossIncome",
                            "type": "option",
-                           "values": "{{_config.grossHouseholdIncome|keys}}",
+                           "values": "i,ii,iii,iv,,vi,vii,viii",
                            "defaultValue": "",
-                           "labels": "{{_config.grossHouseholdIncome}}",
+                           "labels": "Under $10000, $10000-$29999, $30000-$49999, $50000-$79999, $80000-$99999, $100000-$149999, $150000-$199999, $200000 and over",
                            "label": "In which category is your annual gross HOUSEHOLD income (before tax)? This should include the TOTAL of all sources of income from ALL household members."
                         }
                      ]
@@ -291,11 +287,15 @@
                "items": [
                   {
                      "type": "script",
-                     "script": "try{\n renderer.useFormDataFieldArray(\"memberDetails\", formData.members.i)\n renderer.useFormDataFieldArray(\"tripDetails\", formData.trips.i)\n}catch(e){\n\n  renderer.useFormDataFieldArray(\"memberDetails\", 0)\n  renderer.useFormDataFieldArray(\"tripDetails\", 0)\n  console.error(e);\n}\n\nreturn fetch('https://survey.uitrlab.ok.ubc.ca/config/activityOptions.json',{\n    mode: \"no-cors\", // no-cors, *cors, same-origin\n    cache: \"no-cache\",\n    credentials: \"omit\",\n}).then(function(resp){\n return resp.json();\n\n}).then(function(json){\n\n renderer.setFormValue('_config', json);\n\n}).catch(console.error)"
+                     "script": "renderer.useFormDataFieldArray(\"memberDetails\", formData.members.i)\nrenderer.useFormDataFieldArray(\"tripDetails\", formData.trips.i)"
+                  },
+                  {
+                     "type": "style",
+                     "style": ".activity-row>fieldset {\n    display: inline-block;\n    margin: 5px !important;\n    vertical-align: top;\n}\n\n.activity-row>* .option>label, .activity-row>* .option>select {\n    display: block;\n    margin: 5px;\n    min-width: 100px;\n    white-space: nowrap;\n}\n\n\nfieldset.activity-time-location>label>input, fieldset.activity-end-time>label>input{\n    width: 70%;\n    min-width: 200px !important;\n}\n\nfieldset.activity-time-location>label, fieldset.activity-end-time>label{\n    margin-left: 0 !important;\n}\n\nfieldset.activity-time-location>label>span, fieldset.activity-end-time>label>span{\n    min-width: 150px;\n    display: inline-block;\n    font-weight: bold;\n}\n\nfieldset.activity-end-time>label>span{\n text-align:left;\n margin:5px;\n margin-bottom: 0;\n}\n\nfieldset.activity-end-time>label>input{\n margin:5px !important;\n}\n\n\n\nfieldset.activity-time-location {\n    display: block;\n}\n\nfieldset.activity-time-location>label:first-child {\n    width: 35%;\n    white-space: nowrap;\n    display: inline-block;\n}\n\nfieldset.activity-time-location>label:last-child {\n    width: 60%;\n    white-space: nowrap;\n    display: inline-block;\n}\n\n\nfieldset.activity-time-location>label:first-child>input {\n    width: 164px;\n    min-width: unset !important;\n}\n\nfieldset.activity-time-location>label:last-child>input {\n   width: 360px;\n}\n\nfieldset.activity-time-location>label:first-child>span {\n    min-width: 100px;\n   \n}\n\n\n\n\n\n.schedule {\n    width: 100%;\n    background: #d0a9e1;\n    border-radius: 5px;\n    padding: 30px;\n    box-sizing: border-box;\n}\n\n\n.activity-row>fieldset fieldset {\n    margin: unset;\n    display: inline;\n    padding: unset;\n}\n\n\n\n.activity-row>* .option>select {\n    height: 30px;\n    padding: 0 10px;\n    border-radius: 2px;\n}\n\nfieldset.travel-options {\n    white-space: nowrap;\n}\n\nfieldset.travel-options>* {\n    display: inline-block;\n}\n\nfieldset.travel-options fieldset {\n    background: transparent;\n}\n\nfieldset.activity-row {\n    background: transparent !important;\n    margin: 0 !important;\n    padding: 0 !important;\n}\n\n.collapse fieldset.activity-row fieldset {\n    display: none;\n}\n.collapse fieldset.custom-loop {\n    padding: 0 20px;\n}\n.nav.inline-nav {\n    display: none;\n}\n\n\nfieldset.travel-options fieldset .option {\n    display: inline-block;\n}\n\n.collapse {\n    position:relative;\n}\n.collapse .nav.inline-nav {\n    display: block;\n    text-align: right;\n    position: absolute;\n    top: 1px;\n    right: 5px;\n}\n\n.markdown h3 strong {\n    font-size: 30px;\n    color: #386bc6;\n}\n"
                   },
                   {
                      "type": "defaultData",
-                     "data": "{ \n\n   \"vehicleDefaultLabels\":\"Toyota Matrix, Ford F150, Nissan LEAF\"  \n}"
+                     "data": "{ \n\n  \n   \"memberName\":\"Jack\",\n   \"vehicles\":\"a, b, c\",\n   \"vehicleLabels\":\"Toyota Matrix, Ford F150, Nissan LEAF\",\n\n   \"activityTypes\": \"inHome, atWork, atSchool, other\", \n   \"activityTypeLabels\": \"At Home, At work, At School, other\",\n\n   \"inHomeActivities\":\"working, online, onlineClass, other\",\n   \"inHomeActivityLabels\":[\n        \"Working at home\", \n        \"Online activities\", \n        \"Online classes\", \n        \"All other - sleeping, meals etc.\"\n   ],\n\n\n   \n\n\n   \"atWorkActivities\":\"working, other\",\n   \"atWorkActivityLabels\":\"Working, All other activities\",\n\n   \"atSchoolActivities\":\"class, other\",\n   \"atSchoolActivityLabels\":\"Attending class, All other activities\",\n\n   \"otherActivities\":\"shopping, errands\",\n   \"otherActivityLabels\":\"Routine shopping, Household errands\",\n\n   \"travelTypes\":\"autoDriver, autoPassenger\",\n   \"travelTypeLabels\":\"Auto Driver, Auto Passenger\",\n \n   \"travelWith\":\"alone, partner\",\n   \"travelWithLabels\":\"Alone, Spouse/Partner\",\n\n\n\n    \"activityCategory0\": \"inHome\",\n    \"inHomeActivity0\": \"other\",\n    \"startTime0\": \"03:00\",\n    \"startLocation0\": \"Home Address\",\n    \"endTime0\": \"09:00\"\n\n\n}"
                   },
                   {
                      "type": "script",
@@ -303,11 +303,11 @@
                   },
                   {
                      "type": "markdown",
-                     "text": "\n## Member Activities\n### **{{memberDetails[members.i].personName|default('Test Member Name')}}** Record Activities for {{date|date(\"F jS Y\")}}"
+                     "text": "\n## Member Activities\n### **{{memberDetails[members.i].personName|default('Example Name')}}** Record Activities for {{date|date(\"F jS Y\")}}"
                   },
                   {
                      "type": "html",
-                     "html": "<div class=\"schedule\">\n   <h3>{Schedule Visual Placeholder}</h3>\n   <p>{This area will display the time-blocks organized in a way to show the overview of all the tasks occurring in the day}</p>\n</div>"
+                     "html": "<div class=\"schedule\">\n   <h3>{Schedule Visual Placeholder}</h3>\n   <p>{This area will display the time-blocks organized in a way to show the overview of all the tasks occurring in the day. It will not be the colour of pea soup! }</p>\n</div>"
                   },
                   {
                      "type": "template",
@@ -327,30 +327,14 @@
                               {
                                  "fieldName": "startTime{{itemIndex}}",
                                  "type": "textfield",
-                                 "label": "Activity Start Time",
+                                 "label": "Start Time",
                                  "placeholder": "",
                                  "format": "time"
                               },
                               {
-                                 "fieldName": "locationType{{itemIndex}}",
-                                 "type": "option",
-                                 "values": "{{_config.location|keys}}",
-                                 "defaultValue": "",
-                                 "labels": "{{_config.location}}",
-                                 "label": "Location"
-                              }
-                           ]
-                        },
-                        {
-                           "type": "fieldset",
-                           "legend": "",
-                           "classNames": "",
-                           "conditionScript": "return formData.locationType{{itemIndex}}===\"2\"",
-                           "items": [
-                              {
-                                 "fieldName": "locationOtherText{{itemIndex}}",
+                                 "fieldName": "startLocation{{itemIndex}}",
                                  "type": "textfield",
-                                 "label": "Address",
+                                 "label": "StartLocation",
                                  "placeholder": "type address",
                                  "format": "geocode"
                               }
@@ -359,12 +343,36 @@
                         {
                            "type": "fieldset",
                            "legend": "",
-                           "classNames": "travel-options",
-                           "conditionScript": "\nreturn {{itemIndex}}>0\n&&pageData.locationType{{itemIndex-1}}\n&&pageData.locationType{{itemIndex}}\n&&pageData.locationType{{itemIndex-1}}!==pageData.locationType{{itemIndex}}\n\n",
+                           "classNames": "",
+                           "conditionScript": "",
                            "items": [
                               {
-                                 "type": "template.Transit",
-                                 "variables": "{\"itemIndex\":{{itemIndex}}}"
+                                 "fieldName": "activityCategory{{itemIndex}}",
+                                 "type": "option",
+                                 "values": "{{activityTypes}}",
+                                 "defaultValue": "",
+                                 "labels": "{{activityTypeLabels}}",
+                                 "label": "Activity Location"
+                              }
+                           ]
+                        },
+                        {
+                           "type": "fieldset",
+                           "legend": "",
+                           "classNames": "travel-options",
+                           "conditionScript": "\nreturn formData.activityCategory{{itemIndex-1}}!==formData.activityCategory{{itemIndex}}&&{{itemIndex}}!==0&&formData.activityCategory{{itemIndex}}&&formData.activityCategory{{itemIndex-1}}",
+                           "items": [
+                              {
+                                 "fieldName": "travelType{{{itemIndex}}",
+                                 "type": "option",
+                                 "values": "{{travelTypes}}",
+                                 "defaultValue": "",
+                                 "labels": "{{travelTypeLabels}}",
+                                 "label": "Travel Mode"
+                              },
+                              {
+                                 "type": "template.Transit With",
+                                 "variables": "{ \"variable1\":true, \"variable2\":false }"
                               }
                            ]
                         },
@@ -372,14 +380,14 @@
                            "type": "fieldset",
                            "legend": "",
                            "classNames": "",
-                           "conditionScript": "return formData.locationType{{itemIndex}}===\"0\"",
+                           "conditionScript": "return formData.activityCategory{{itemIndex}}===\"inHome\"",
                            "items": [
                               {
                                  "fieldName": "inHomeActivity{{itemIndex}}",
                                  "type": "option",
-                                 "values": "{{_config.activity.home|keys}}",
+                                 "values": "{{inHomeActivities}}",
                                  "defaultValue": "",
-                                 "labels": "{{_config.activity.home}}",
+                                 "labels": "{{inHomeActivityLabels}}",
                                  "label": "Home Activity"
                               }
                            ]
@@ -388,14 +396,14 @@
                            "type": "fieldset",
                            "legend": "",
                            "classNames": "",
-                           "conditionScript": "return formData.locationType{{itemIndex}}===\"1\"",
+                           "conditionScript": "return formData.activityCategory{{itemIndex}}===\"atWork\"",
                            "items": [
                               {
                                  "fieldName": "workActivity{{itemIndex}}",
                                  "type": "option",
-                                 "values": "{{_config.activity[\"work-school\"]|keys}}",
+                                 "values": "{{atWorkActivities}}",
                                  "defaultValue": "",
-                                 "labels": "{{_config.activity[\"work-school\"]}}",
+                                 "labels": "{{atWorkActivityLabels}}",
                                  "label": "Work Activity"
                               }
                            ]
@@ -404,14 +412,30 @@
                            "type": "fieldset",
                            "legend": "",
                            "classNames": "",
-                           "conditionScript": "return formData.locationType{{itemIndex}}===\"2\"",
+                           "conditionScript": "return formData.activityCategory{{itemIndex}}===\"atSchool\"",
+                           "items": [
+                              {
+                                 "fieldName": "schoolActivity{{itemIndex}}",
+                                 "type": "option",
+                                 "values": "{{atSchoolActivities}}",
+                                 "defaultValue": "",
+                                 "labels": "{{atSchoolActivityLabels}}",
+                                 "label": "School Activity"
+                              }
+                           ]
+                        },
+                        {
+                           "type": "fieldset",
+                           "legend": "",
+                           "classNames": "",
+                           "conditionScript": "return formData.activityCategory{{itemIndex}}===\"other\"",
                            "items": [
                               {
                                  "fieldName": "otherActivity{{itemIndex}}",
                                  "type": "option",
-                                 "values": "{{_config.activity.other|keys}}",
+                                 "values": "{{otherActivities}}",
                                  "defaultValue": "",
-                                 "labels": "{{_config.activity.other}}",
+                                 "labels": "{{otherActivityLabels}}",
                                  "label": "Other Activity"
                               }
                            ]
@@ -435,7 +459,7 @@
                   },
                   {
                      "type": "template",
-                     "template": "Transit",
+                     "template": "Transit With",
                      "classNames": "",
                      "items": [
                         {
@@ -447,50 +471,18 @@
                               {
                                  "fieldName": "transitWith{{itemIndex}}",
                                  "type": "option",
-                                 "values": "{{_config.transit.with|keys}}",
+                                 "values": "{{travelWith}}",
                                  "defaultValue": "",
-                                 "labels": "{{_config.transit.with}}",
+                                 "labels": "{{travelWithLabels}}",
                                  "label": "Travelling with?"
                               },
                               {
-                                 "fieldName": "transitMode{{itemIndex}}",
+                                 "fieldName": "transitVehicle{{itemIndex}}",
                                  "type": "option",
-                                 "values": "{{_config.transit.mode|keys}}",
+                                 "values": "{{vehicles}}",
                                  "defaultValue": "",
-                                 "labels": "{{_config.transit.mode}}",
-                                 "label": "Transit Type"
-                              },
-                              {
-                                 "type": "fieldset",
-                                 "legend": "",
-                                 "classNames": "",
-                                 "conditionScript": "return pageData.transitMode{{itemIndex}}===\"2\";",
-                                 "items": [
-                                    {
-                                       "fieldName": "transitAccess{{itemIndex}}",
-                                       "type": "option",
-                                       "values": "{{_config.transit.mode|keys}}",
-                                       "defaultValue": "",
-                                       "labels": "{{_config.transit.mode}}",
-                                       "label": "Transit Access"
-                                    }
-                                 ]
-                              },
-                              {
-                                 "type": "fieldset",
-                                 "legend": "",
-                                 "classNames": "",
-                                 "conditionScript": "return pageData.transitMode{{itemIndex}}===\"0\"||\npageData.transitMode{{itemIndex}}===\"1\";",
-                                 "items": [
-                                    {
-                                       "fieldName": "transitVehicle{{itemIndex}}",
-                                       "type": "option",
-                                       "values": "{{vehicleDefaultLabels|keys}}",
-                                       "defaultValue": "",
-                                       "labels": "{{vehicleDefaultLabels}}",
-                                       "label": "Which Vehicle"
-                                    }
-                                 ]
+                                 "labels": "{{vehicleLabels}}",
+                                 "label": "Which Vehicle"
                               }
                            ]
                         }
@@ -511,7 +503,7 @@
                ]
             }
          ],
-         "navigationLogic": "fetch('https://survey.uitrlab.ok.ubc.ca/current/submit.php', {\n    method: \"POST\", \n    cache: \"no-cache\",\n    headers: {\n      \"Content-Type\": \"application/json\",\n    },\n    body: JSON.stringify(formData), \n  });\n\nif(formData.members.i<formData.members.total-1){\n   formData.members.i++;\n   renderer.setFormValue('members', formData.members);\n   return 'cb46d';\n}\nreturn '8db4c';",
+         "navigationLogic": "\nfetch('https://survey.uitrlab.ok.ubc.ca/current/submit.php', {\n    method: \"POST\", \n    cache: \"no-cache\",\n    headers: {\n      \"Content-Type\": \"application/json\",\n    },\n    body: JSON.stringify(formData), \n  });\n\nif(formData.members.i<formData.members.total-1){\n   formData.members.i++;\n   renderer.setFormValue('members', formData.members);\n   return 'cb46d';\n}\nreturn '8db4c';",
          "then": "goto node 0",
          "nodes": [
             {
@@ -525,14 +517,14 @@
                      "items": []
                   }
                ],
-               "navigationLogic": "\n\nif(formData.memberDetails[formData.members.i].addAnother==='on'){\n  var members=renderer.getFormValue('members');\n  if(typeof members=='undefined'){\n    members={i:-1, total:1};\n  }\n  members.i++;\n  members.total++;\n  renderer.setFormValue('members', members);\n  renderer.setFormValue('addAnother', 'off');\n  return '4b7f0';\n}\n\nvar members=renderer.getFormValue('members');\nmembers.i=0;\nrenderer.setFormValue('members', members);\n\nreturn 'cb46d';",
+               "navigationLogic": "return 0;",
                "then": "terminate"
             },
             "cb46d44e-248c-4297-bcf3-e3955220b7a2"
          ]
       },
       {
-         "name": "Member Details",
+         "name": "Household Member",
          "type": "section",
          "uuid": "4b7f002f-f8cd-41a4-8a0c-ab56b6b2a488",
          "items": [
@@ -542,7 +534,7 @@
                "items": [
                   {
                      "type": "script",
-                     "script": "\n\ntry{\n   renderer.useFormDataFieldArray(\"memberDetails\", formData.members.i);\n}catch(e){\n   renderer.useFormDataFieldArray(\"memberDetails\", 0);\n   console.error(e);\n}\nreturn fetch('https://survey.uitrlab.ok.ubc.ca/config/memberOptions.json',{\n    mode: \"no-cors\", // no-cors, *cors, same-origin\n    cache: \"no-cache\",\n    credentials: \"omit\",\n}).then(function(resp){\n return resp.json();\n\n}).then(function(json){\n\n renderer.setFormValue('_config', json);\n\n}).catch(console.error)"
+                     "script": "\n\n\n\n  renderer.useFormDataFieldArray(\"memberDetails\", formData.members.i)\n"
                   },
                   {
                      "type": "markdown",
@@ -556,96 +548,68 @@
                   },
                   {
                      "type": "fieldset",
-                     "legend": "",
+                     "legend": "Some Legend",
                      "classNames": "",
                      "conditionScript": "",
                      "items": [
                         {
-                           "fieldName": "hasLicense",
+                           "fieldName": "gender",
                            "type": "radio",
-                           "values": "yes, no",
+                           "values": "male, female",
                            "defaultValue": "",
-                           "labels": "Yes, No",
-                           "label": "Do you have a valid driver's license?"
-                        },
-                        {
-                           "fieldName": "hasTransitPass",
-                           "type": "radio",
-                           "values": "yes, no",
-                           "defaultValue": "",
-                           "labels": "Yes, No",
-                           "label": "Do you own a monthly transit pass?"
+                           "labels": "Male, Female",
+                           "default": "none",
+                           "label": "Gender of this person"
                         },
                         {
                            "fieldName": "age",
-                           "type": "option",
-                           "values": "{{_config.ageRange|keys}}",
-                           "defaultValue": "",
-                           "labels": "{{_config.ageRange}}",
-                           "label": "What is your age?"
-                        },
-                        {
-                           "fieldName": "gender",
-                           "type": "option",
-                           "values": "{{_config.gender|keys}}",
-                           "defaultValue": "",
-                           "labels": "{{_config.gender|keys}}",
-                           "label": "What is your gender?"
-                        },
-                        {
-                           "fieldName": "maritalStatus",
-                           "type": "option",
-                           "values": "{{_config.maritalStatus|keys}}",
-                           "defaultValue": "",
-                           "labels": "{{_config.maritalStatus}}",
-                           "label": "What is your marital status?"
-                        }
-                     ]
-                  },
-                  {
-                     "type": "fieldset",
-                     "legend": "",
-                     "classNames": "",
-                     "conditionScript": "",
-                     "items": [
-                        {
-                           "fieldName": "educationLevel",
-                           "type": "option",
-                           "values": "{{_config.education|keys}}",
-                           "defaultValue": "",
-                           "labels": "{{_config.education}}",
-                           "label": "What is the highest level of education you achieved to date?"
-                        },
-                        {
-                           "fieldName": "employmentStatus",
-                           "type": "option",
-                           "values": "{{_config.employment|keys}}",
-                           "defaultValue": "",
-                           "labels": "{{_config.employment}}",
-                           "label": "What best describes your employment status?"
-                        },
-                        {
-                           "fieldName": "occupationCategory",
-                           "type": "option",
-                           "values": "{{_config.occupation|keys}}",
-                           "defaultValue": "",
-                           "labels": "{{_config.occupation}}",
-                           "label": "What is your primary occupation category?"
-                        }
-                     ]
-                  },
-                  {
-                     "type": "fieldset",
-                     "legend": "",
-                     "classNames": "",
-                     "conditionScript": "",
-                     "items": [
-                        {
-                           "fieldName": "workAddress",
                            "type": "textfield",
-                           "label": "Based on your answer to Question No. 26, please mention s the address of [your/PERSON’s] normal place of work (main job)?",
-                           "placeholder": "answer here",
-                           "format": ""
+                           "label": "Age of this person",
+                           "placeholder": "years"
+                        },
+                        {
+                           "fieldName": "hasLicense",
+                           "value": "Some Value",
+                           "type": "checkbox",
+                           "label": "Person has a valid driver's license?",
+                           "defaultValue": false,
+                           "default": false,
+                           "trueLabel": "Yes",
+                           "falseLabel": "No"
+                        },
+                        {
+                           "fieldName": "isComercialDriver",
+                           "value": "Some Value",
+                           "type": "checkbox",
+                           "label": "Person is employed as a commercial driver",
+                           "defaultValue": false,
+                           "default": false,
+                           "trueLabel": "Yes",
+                           "falseLabel": "No"
+                        },
+                        {
+                           "type": "label",
+                           "text": "This person is: (Check all that apply)"
+                        },
+                        {
+                           "fieldName": "someOptionA",
+                           "value": "Some Value",
+                           "type": "checkbox",
+                           "label": "Yes",
+                           "defaultValue": false,
+                           "default": false,
+                           "trueLabel": "Yes",
+                           "falseLabel": "No"
+                        },
+                        {
+                           "fieldName": "someOptionB",
+                           "value": "Some Value",
+                           "type": "checkbox",
+                           "label": "Yes",
+                           "defaultValue": false,
+                           "default": false,
+                           "trueLabel": "Yes",
+                           "falseLabel": "No"
                         }
                      ]
                   },
@@ -656,11 +620,106 @@
                      "conditionScript": "",
                      "items": [
                         {
-                           "fieldName": "workArrangement",
+                           "type": "label",
+                           "text": "If this person works, please list thier workplaces"
+                        },
+                        {
+                           "fieldName": "work1",
                            "type": "textfield",
-                           "label": "Based on the answer to Question 27, What is the work arrangement of your job? (e.g., 5 days, 9 am-5 pm)",
-                           "placeholder": "answer here",
-                           "format": ""
+                           "label": "Name of work 1",
+                           "placeholder": ""
+                        },
+                        {
+                           "fieldName": "address1",
+                           "type": "textfield",
+                           "label": "Address",
+                           "placeholder": "answer here"
+                        },
+                        {
+                           "fieldName": "municipality1",
+                           "type": "textfield",
+                           "label": "Municipality",
+                           "placeholder": "answer here"
+                        },
+                        {
+                           "fieldName": "work2",
+                           "type": "textfield",
+                           "label": "Name of work 2",
+                           "placeholder": ""
+                        },
+                        {
+                           "fieldName": "address2",
+                           "type": "textfield",
+                           "label": "Address",
+                           "placeholder": "answer here"
+                        },
+                        {
+                           "fieldName": "municipality2",
+                           "type": "textfield",
+                           "label": "Municipality",
+                           "placeholder": "answer here"
+                        }
+                     ]
+                  },
+                  {
+                     "type": "fieldset",
+                     "legend": "Some legend",
+                     "classNames": "",
+                     "conditionScript": "",
+                     "items": [
+                        {
+                           "type": "label",
+                           "text": "If this person is a student, please list thier school"
+                        },
+                        {
+                           "fieldName": "school",
+                           "type": "textfield",
+                           "label": "Name of School",
+                           "placeholder": ""
+                        },
+                        {
+                           "fieldName": "addressSchool",
+                           "type": "textfield",
+                           "label": "Address",
+                           "placeholder": ""
+                        },
+                        {
+                           "fieldName": "municipalitySchool",
+                           "type": "textfield",
+                           "label": "Municipality",
+                           "placeholder": ""
+                        }
+                     ]
+                  },
+                  {
+                     "type": "fieldset",
+                     "legend": "",
+                     "classNames": "",
+                     "conditionScript": "",
+                     "items": [
+                        {
+                           "type": "label",
+                           "text": "Does this person drive him/herself to work or school?"
+                        },
+                        {
+                           "fieldName": "drives",
+                           "value": "Some Value",
+                           "type": "checkbox",
+                           "label": "Yes",
+                           "defaultValue": false,
+                           "default": false,
+                           "showYesNo": "on",
+                           "trueLabel": "Yes",
+                           "falseLabel": "No"
+                        },
+                        {
+                           "fieldName": "paysParking",
+                           "type": "radio",
+                           "values": "free, employer, partial-employer, personal",
+                           "defaultValue": "",
+                           "labels": "Parking is free, Fully paid for by employee, partial-employer, personal",
+                           "default": "none",
+                           "label": "Who pays for parking?"
                         }
                      ]
                   },
@@ -697,7 +756,7 @@
                ]
             }
          ],
-         "navigationLogic": "\nfetch('https://survey.uitrlab.ok.ubc.ca/current/submit.php', {\n    method: \"POST\", \n    cache: \"no-cache\",\n    headers: {\n      \"Content-Type\": \"application/json\",\n    },\n    body: JSON.stringify(formData), \n  });\n\nif(formData.members.i<formData.members.total-1){\n   formData.members.i++;\n   renderer.setFormValue('members', formData.members);\n   return 'cb46d';\n}\nreturn '8db4c';",
+         "navigationLogic": "\n\nif(formData.memberDetails[formData.members.i].addAnother==='on'){\n  var members=renderer.getFormValue('members');\n  if(typeof members=='undefined'){\n    members={i:-1, total:1};\n  }\n  members.i++;\n  members.total++;\n  renderer.setFormValue('members', members);\n  renderer.setFormValue('addAnother', 'off');\n  return '4b7f0';\n}\n\nvar members=renderer.getFormValue('members');\nmembers.i=0;\nrenderer.setFormValue('members', members);\n\nreturn 'cb46d';",
          "then": "goto node 0",
          "nodes": [
             "cb46d44e-248c-4297-bcf3-e3955220b7a2",
@@ -705,7 +764,7 @@
          ]
       },
       {
-         "name": "Vehicle Details",
+         "name": "Vehicles",
          "type": "section",
          "uuid": "b739ce6f-a1c5-4ba2-82d8-c91394e7fa5f",
          "items": [
@@ -714,12 +773,8 @@
                "type": "set",
                "items": [
                   {
-                     "type": "script",
-                     "script": "return fetch('https://survey.uitrlab.ok.ubc.ca/config/vehicleOptions.json',{\n    mode: \"no-cors\", // no-cors, *cors, same-origin\n    cache: \"no-cache\",\n    credentials: \"omit\",\n}).then(function(resp){\n return resp.json();\n\n}).then(function(json){\n\n renderer.setFormValue('_config', json);\n\n}).catch(console.error)"
-                  },
-                  {
                      "type": "style",
-                     "style": "fieldset.vehicle-template fieldset>label, fieldset.vehicle-template fieldset>.option {\n    display: inline-block;\n    white-space: nowrap;\n    width: calc( 20% );\n    text-align: left;\n    padding: 10px;\n    box-sizing: border-box;\n}\nfieldset.vehicle-template fieldset>label>span {\n    display:block;\n}\n\nfieldset.vehicle-template fieldset>label>input[type=\"text\"] {\n    min-width: unset;\n    display: inline-block;\n    width: calc( 100% - 20px );\n    margin: 0;\n}\n\n\n\nfieldset.vehicle-template .option>label {\n    display: block;\n    margin: 0;\n}\n\nfieldset.vehicle-template .option>select {\n    margin: 0;\n}"
+                     "style": "fieldset.vehicle-template fieldset>label, fieldset.vehicle-template fieldset>.option {\n    display: inline-block;\n    white-space: nowrap;\n    width: calc( 20% );\n    text-align: left;\n    padding: 10px;\n    box-sizing: border-box;\n}\nfieldset.vehicle-template fieldset>label>span {\n    display:block;\n}\n\nfieldset.vehicle-template fieldset>label>input[type=\"text\"] {\n    min-width: unset;\n    display: inline-block;\n    width: calc( 100% - 20px );\n    margin: 0;\n}"
                   },
                   {
                      "type": "markdown",
@@ -794,9 +849,9 @@
                               {
                                  "fieldName": "fuelType{{vehicleIndex}}",
                                  "type": "option",
-                                 "values": "{{_config.fuelType|keys}}",
+                                 "values": "a,b,c",
                                  "defaultValue": "",
-                                 "labels": "{{_config.fuelType}}",
+                                 "labels": "Gasoline, Diesel, Plug-in electric",
                                  "label": "Fuel Type"
                               }
                            ]
@@ -816,165 +871,7 @@
                      "renderScript": "\nvar wrap=container.appendChild(new Element('div'));\n\nvar currentVehicles=[];\nvar _lastNum=-1\nvar renderVehicles=function(){\n   var num=parseInt(page.getData().numberOfVehicles);\n\n   if(num===_lastNum||isNaN(num)){\n      return;\n   }\n   _lastNum=num;\n   var i=0;\n   while(i<num){\n\n     if(i>=currentVehicles.length){\n        var vehicleEl=wrap.appendChild(new Element('div'));\n        currentVehicles.push(vehicleEl);\n        renderer.withVariables({\"loopIndex\":i}, ()=>{\n           defaultRenderFn(vehicleEl);\n        });\n     }else{\n        currentVehicles[i].style.cssText='';\n     }\n     i++;\n   }\n   while(i<currentVehicles.length){\n      currentVehicles[i].style.cssText='display:none;';\n      i++;\n   }\n   \n};\n\n\nrenderVehicles();\npage.on('update',function(){\n    renderVehicles();\n});"
                   },
                   {
-                     "type": "fieldset",
-                     "legend": "",
-                     "classNames": "",
-                     "conditionScript": "",
-                     "items": [
-                        {
-                           "fieldName": "numberOfBicycles",
-                           "type": "textfield",
-                           "label": "How many bicycles does your household own and use on a regular basis?",
-                           "placeholder": "number",
-                           "format": "number"
-                        }
-                     ]
-                  },
-                  {
-                     "type": "fieldset",
-                     "legend": "",
-                     "classNames": "",
-                     "conditionScript": "",
-                     "items": [
-                        {
-                           "fieldName": "numberOfEBikes",
-                           "type": "textfield",
-                           "label": "How many e-bikes/e-scooters does your household own and use on a regular basis?",
-                           "placeholder": "number",
-                           "format": "number"
-                        }
-                     ]
-                  },
-                  {
-                     "type": "fieldset",
-                     "legend": "",
-                     "classNames": "",
-                     "conditionScript": "",
-                     "items": [
-                        {
-                           "fieldName": "montlyParkingRespondent",
-                           "type": "option",
-                           "values": "{{_config.parking|keys}}",
-                           "defaultValue": "",
-                           "labels": "{{_config.parking}}",
-                           "label": "How much do you pay ($ CAD) for parking per month at your residence?"
-                        }
-                     ]
-                  },
-                  {
-                     "type": "fieldset",
-                     "legend": "",
-                     "classNames": "",
-                     "conditionScript": "",
-                     "items": [
-                        {
-                           "fieldName": "montlyParkingHousehold",
-                           "type": "option",
-                           "values": "{{_config.parking|keys}}",
-                           "defaultValue": "",
-                           "labels": "{{_config.parking}}",
-                           "label": "How much your household members pay ($ CAD) combined for parking per month at their workplace?"
-                        }
-                     ]
-                  },
-                  {
-                     "type": "fieldset",
-                     "legend": "",
-                     "classNames": "",
-                     "conditionScript": "",
-                     "items": [
-                        {
-                           "fieldName": "chargingLocation",
-                           "type": "textfield",
-                           "label": "If the household owns an EV (Electric Vehicle), please mention the most frequent charging location (e.g. Orchard Plaza)",
-                           "placeholder": "location",
-                           "format": ""
-                        }
-                     ]
-                  },
-                  {
-                     "type": "fieldset",
-                     "legend": "",
-                     "classNames": "",
-                     "conditionScript": "",
-                     "items": [
-                        {
-                           "fieldName": "plansToPurchaseEV",
-                           "type": "option",
-                           "values": "{{_config.purchaseEV|keys}}",
-                           "defaultValue": "",
-                           "labels": "{{_config.purchaseEV}}",
-                           "label": "If you do not own an EV yet, do you plan to buy one in the next 5 years?"
-                        }
-                     ]
-                  },
-                  {
-                     "type": "fieldset",
-                     "legend": "",
-                     "classNames": "",
-                     "conditionScript": "",
-                     "items": [
-                        {
-                           "type": "label",
-                           "text": "Where would you prefer public EV charging stations to be located? (Rank in order from 1-7)"
-                        },
-                        {
-                           "fieldName": "priorityChargingWorkplace",
-                           "type": "textfield",
-                           "label": "Workplace",
-                           "placeholder": "1-7",
-                           "format": ""
-                        },
-                        {
-                           "fieldName": "priorityChargingGrocery",
-                           "type": "textfield",
-                           "label": "Grocery Store",
-                           "placeholder": "1-7",
-                           "format": "number"
-                        },
-                        {
-                           "fieldName": "priorityChargingShoppingMall",
-                           "type": "textfield",
-                           "label": "Shopping Mall",
-                           "placeholder": "1-7",
-                           "format": "number"
-                        },
-                        {
-                           "fieldName": "priorityChargingOnStreet",
-                           "type": "textfield",
-                           "label": "On-Street",
-                           "placeholder": "1-7",
-                           "format": "number"
-                        },
-                        {
-                           "fieldName": "priorityChargingEnRoute",
-                           "type": "textfield",
-                           "label": "En-route",
-                           "placeholder": "1-7",
-                           "format": "number"
-                        },
-                        {
-                           "fieldName": "priorityChargingGasStation",
-                           "type": "textfield",
-                           "label": "Gas Station",
-                           "placeholder": "1-7",
-                           "format": "number"
-                        },
-                        {
-                           "fieldName": "priorityChargingOther",
-                           "type": "textfield",
-                           "label": "Other Distination",
-                           "placeholder": "1-7",
-                           "format": "number"
-                        },
-                        {
-                           "fieldName": "priorityChargingOtherName",
-                           "type": "textfield",
-                           "label": "Other",
-                           "placeholder": "other destination name",
-                           "format": ""
-                        }
-                     ]
+                     "type": "transform"
                   }
                ]
             }
