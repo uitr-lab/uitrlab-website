@@ -1,0 +1,73 @@
+{
+   "name": "Section One",
+   "type": "section",
+   "uuid": "021d6a2b-39b1-431b-b3c3-86a5ca75aadf",
+   "items": [
+      {
+         "name": "Page One",
+         "type": "set",
+         "items": [
+            {
+               "type": "markdown",
+               "text": "## UiTR | Travel Survey Workshop\n\nDate: Wednesday May 31st \n\nTime: 8:30am - 2:00pm PST\n\nLocation: UBCO - TBD"
+            },
+            {
+               "type": "fieldset",
+               "legend": "",
+               "classNames": "",
+               "conditionScript": "",
+               "items": [
+                  {
+                     "fieldName": "name",
+                     "type": "textfield",
+                     "label": "Please enter your name",
+                     "placeholder": "name",
+                     "format": ""
+                  },
+                  {
+                     "fieldName": "organization",
+                     "type": "textfield",
+                     "label": "Please enter the name of your organization",
+                     "placeholder": "organization",
+                     "format": ""
+                  },
+                  {
+                     "fieldName": "email",
+                     "type": "textfield",
+                     "label": "Please enter your email address below to register",
+                     "placeholder": "email",
+                     "format": ""
+                  }
+               ]
+            },
+            {
+               "type": "fieldset",
+               "legend": "",
+               "classNames": "",
+               "conditionScript": "",
+               "items": [
+                  {
+                     "fieldName": "dietary",
+                     "type": "textfield",
+                     "label": "Please let us know of any dietary restrictions or allergies",
+                     "placeholder": "dietary restrictions, allergies",
+                     "format": ""
+                  },
+                  {
+                     "fieldName": "requiresParking",
+                     "value": "Some Value",
+                     "type": "checkbox",
+                     "label": "Do you require a parking pass",
+                     "defaultValue": false,
+                     "trueLabel": "Yes",
+                     "falseLabel": "No",
+                     "showYesNo": "on"
+                  }
+               ]
+            }
+         ]
+      }
+   ],
+   "navigationLogic": "return 0;",
+   "then": "terminate"
+}

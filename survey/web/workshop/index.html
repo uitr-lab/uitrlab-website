@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1"><title>UiTR | Travel Survey Workshop</title>
+   <link rel="stylesheet" type="text/css" href="style.css">
+
+
+<style type="text/css">
+   
+form.survey-view {
+   font-family: sans-serif;
+   margin-top: 40px;
+}
+
+
+label>span, label[for="requiresParking"] {
+    display: block;
+    font-weight: 200;
+    text-indent: 10px;
+    margin: 10px 0;
+    margin-top: 30px;
+}
+
+.markdown h2 {
+    font-size: 40px;
+    color: #448770;
+}
+
+.markdown p {
+    font-size: 20px;
+    color: #448770;
+}
+
+form.survey-view, pre.survey-data {
+    background: none;
+}
+
+h3.complete-page {
+    font-size: 40px;
+    color: #448770;
+}
+
+</style>
+
+</head><body></body>
+
+
+
+<script src="form.js"></script>
+<script type="text/javascript">
+
+(function(){ 
+
+   var renderer=new SurveyRenderer();
+   renderer.setOptions({
+		completeLabel:"Register",
+      completePageHtml:"Registration complete! Thank you."
+   });
+   var survey="rsvp.json";
+   document.body.appendChild(renderer.render(survey));
+   renderer.on('complete', function(){
+      renderer.postFormData('submit.php');
+   })
+
+})();
+
+</script>
+
+
+
+</html>

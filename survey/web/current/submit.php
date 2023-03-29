@@ -7,11 +7,15 @@ $ch = curl_init('https://uploader.uitrlab.ok.ubc.ca/upload.php');
 
 $file=time().'.json';
 
-if(isset($_POST['surveyName'])){
-	$file=$_POST['surveyName'].$file;
-}
+$inputJSON = file_get_contents('php://input');
+$input = json_decode($inputJSON); //convert JSON into array
 
-file_put_contents(__DIR__.'/'.$file, json_encode($_POST, JSON_PRETTY_PRINT));
+if(isset($input->surveyName)){
+	$file=$input->surveyName.$file;
+}
+$formData=$input;
+
+file_put_contents(__DIR__.'/'.$file, json_encode($formData, JSON_PRETTY_PRINT));
 $cfile = new CURLFile(__DIR__.'/'.$file, 'application/json');
 
 
