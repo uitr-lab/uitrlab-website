@@ -18,27 +18,13 @@ $formData=$input;
 
 error_log($inputJSON);
 
-file_put_contents(__DIR__.'/log/'.$file, json_encode($formData));
+file_put_contents(__DIR__.'/../log/'.$file, json_encode($formData));
 
-$fp = fopen(__DIR__.'/responses.csv', 'a+');
+$fp = fopen(__DIR__.'/../responses.csv', 'a+');
 fputcsv($fp, array_values(get_object_vars($formData)));
 fclose($fp);
 
 
-// $cfile = new CURLFile(__DIR__.'/'.$file, 'application/json');
-
-
-// $data = array(
-// 	'the_file' => $cfile,
-// 	'stub'=>'d5b7a5dbde',
-// 	'share-link'=>'d22d5f1d6c'
-// );
-// curl_setopt($ch, CURLOPT_POST,1);
-// curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-
-// // Execute the handle
-// curl_exec($ch);
-
-
-
-//unlink(__DIR__.'/'.$file);
+require realpath(__DIR__ . '/../lib/mail.php');
+(new ResponseMailer())
+	->respond($input);
