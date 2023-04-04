@@ -8,12 +8,11 @@ $share=json_decode(file_get_contents(__DIR__.'/../share.json'));
 
 
 
+
 $formData=$_POST;
 if(isset($formData['_config']){
 	unset($formData['_config']);
 }
-
-
 
 $mysqli = new mysqli($db->host, $db->user, $db->password, $db->database, $db->port);
 

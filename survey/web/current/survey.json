@@ -78,7 +78,7 @@
                "items": [
                   {
                      "type": "script",
-                     "script": "return fetch('https://survey.uitrlab.ok.ubc.ca/config/householdOptions.json',{\n    mode: \"no-cors\", // no-cors, *cors, same-origin\n    cache: \"no-cache\",\n    credentials: \"omit\",\n}).then(function(resp){\n return resp.json();\n\n}).then(function(json){\n\n renderer.setFormValue('_config', json);\n\n}).catch(console.error)"
+                     "script": "return renderer.fetchFormValue(\n   '_config', 'https://survey.uitrlab.ok.ubc.ca/config/householdOptions.json'\n);"
                   },
                   {
                      "type": "markdown",
@@ -201,10 +201,10 @@
                      "conditionScript": "",
                      "items": [
                         {
-                           "fieldName": "totalPeopleOver",
+                           "fieldName": "totalUnder15",
                            "type": "textfield",
                            "label": "How many members in the household are younger than 15 years? ",
-                           "placeholder": "people over 15",
+                           "placeholder": "under 15",
                            "format": "number"
                         }
                      ]
@@ -235,7 +235,7 @@
                            "type": "fieldset",
                            "legend": "",
                            "classNames": "",
-                           "conditionScript": "return pageData.ownerStatus==='owner';",
+                           "conditionScript": "return pageData.ownerStatus==='0';",
                            "items": [
                               {
                                  "type": "label",
@@ -246,7 +246,7 @@
                                  "type": "textfield",
                                  "label": "Monthly Mortgage",
                                  "placeholder": "monthly mortgage",
-                                 "format": ""
+                                 "format": "number"
                               }
                            ]
                         },
@@ -254,7 +254,7 @@
                            "type": "fieldset",
                            "legend": "",
                            "classNames": "",
-                           "conditionScript": "return pageData.ownerStatus!=='owner';",
+                           "conditionScript": "return pageData.ownerStatus!=='0';",
                            "items": [
                               {
                                  "type": "label",
@@ -265,7 +265,7 @@
                                  "type": "textfield",
                                  "label": "Monthly Rent (Excluding Extra utilities)",
                                  "placeholder": "monthly rent",
-                                 "format": ""
+                                 "format": "number"
                               }
                            ]
                         }
@@ -291,7 +291,7 @@
                "items": [
                   {
                      "type": "script",
-                     "script": "try{\n renderer.useFormDataFieldArray(\"memberDetails\", formData.members.i)\n renderer.useFormDataFieldArray(\"tripDetails\", formData.trips.i)\n}catch(e){\n\n  renderer.useFormDataFieldArray(\"memberDetails\", 0)\n  renderer.useFormDataFieldArray(\"tripDetails\", 0)\n  console.error(e);\n}\n\nreturn fetch('https://survey.uitrlab.ok.ubc.ca/config/activityOptions.json',{\n    mode: \"no-cors\", // no-cors, *cors, same-origin\n    cache: \"no-cache\",\n    credentials: \"omit\",\n}).then(function(resp){\n return resp.json();\n\n}).then(function(json){\n\n renderer.setFormValue('_config', json);\n\n}).catch(console.error)"
+                     "script": "\nrenderer.useFormDataFieldArray(\"memberDetails\", function(){ return formData.members.i; });\nrenderer.useFormDataFieldArray(\"tripDetails\", function(){ formData.trips.i; });\n\nreturn renderer.fetchFormValue(\n   '_config', 'https://survey.uitrlab.ok.ubc.ca/config/activityOptions.json'\n);\n"
                   },
                   {
                      "type": "defaultData",
@@ -522,7 +522,12 @@
                   {
                      "name": "Page One",
                      "type": "set",
-                     "items": []
+                     "items": [
+                        {
+                           "type": "markdown",
+                           "text": "## Survey Complete!\nThank you for participating"
+                        }
+                     ]
                   }
                ],
                "navigationLogic": "\n\nif(formData.memberDetails[formData.members.i].addAnother==='on'){\n  var members=renderer.getFormValue('members');\n  if(typeof members=='undefined'){\n    members={i:-1, total:1};\n  }\n  members.i++;\n  members.total++;\n  renderer.setFormValue('members', members);\n  renderer.setFormValue('addAnother', 'off');\n  return '4b7f0';\n}\n\nvar members=renderer.getFormValue('members');\nmembers.i=0;\nrenderer.setFormValue('members', members);\n\nreturn 'cb46d';",
@@ -542,7 +547,7 @@
                "items": [
                   {
                      "type": "script",
-                     "script": "\n\ntry{\n   renderer.useFormDataFieldArray(\"memberDetails\", formData.members.i);\n}catch(e){\n   renderer.useFormDataFieldArray(\"memberDetails\", 0);\n   console.error(e);\n}\nreturn fetch('https://survey.uitrlab.ok.ubc.ca/config/memberOptions.json',{\n    mode: \"no-cors\", // no-cors, *cors, same-origin\n    cache: \"no-cache\",\n    credentials: \"omit\",\n}).then(function(resp){\n return resp.json();\n\n}).then(function(json){\n\n renderer.setFormValue('_config', json);\n\n}).catch(console.error)"
+                     "script": "\n\n\nrenderer.useFormDataFieldArray(\"memberDetails\", function(){ return formData.members.i; });\n\nreturn renderer.fetchFormValue(\n   '_config', 'https://survey.uitrlab.ok.ubc.ca/config/memberOptions.json'\n);\n"
                   },
                   {
                      "type": "markdown",
@@ -697,7 +702,7 @@
                ]
             }
          ],
-         "navigationLogic": "\nfetch('https://survey.uitrlab.ok.ubc.ca/current/submit.php', {\n    method: \"POST\", \n    cache: \"no-cache\",\n    headers: {\n      \"Content-Type\": \"application/json\",\n    },\n    body: JSON.stringify(formData), \n  });\n\nif(formData.members.i<formData.members.total-1){\n   formData.members.i++;\n   renderer.setFormValue('members', formData.members);\n   return 'cb46d';\n}\nreturn '8db4c';",
+         "navigationLogic": "\nfetch('https://survey.uitrlab.ok.ubc.ca/current/submit.php', {\n    method: \"POST\", \n    cache: \"no-cache\",\n    headers: {\n      \"Content-Type\": \"application/json\",\n    },\n    body: JSON.stringify(formData), \n  });\n\nif(formData.members.i<formData.members.total-1){\n   formData.members.i++;\n   renderer.setFormValue('members', formData.members);\n   return '4b7f0';\n}\nreturn 'cb46d';",
          "then": "goto node 0",
          "nodes": [
             "cb46d44e-248c-4297-bcf3-e3955220b7a2",
@@ -715,11 +720,11 @@
                "items": [
                   {
                      "type": "script",
-                     "script": "return fetch('https://survey.uitrlab.ok.ubc.ca/config/vehicleOptions.json',{\n    mode: \"no-cors\", // no-cors, *cors, same-origin\n    cache: \"no-cache\",\n    credentials: \"omit\",\n}).then(function(resp){\n return resp.json();\n\n}).then(function(json){\n\n renderer.setFormValue('_config', json);\n\n}).catch(console.error)"
+                     "script": "return renderer.fetchFormValue(\n   '_config', 'https://survey.uitrlab.ok.ubc.ca/config/vehicleOptions.json'\n);\n"
                   },
                   {
                      "type": "style",
-                     "style": "fieldset.vehicle-template fieldset>label, fieldset.vehicle-template fieldset>.option {\n    display: inline-block;\n    white-space: nowrap;\n    width: calc( 20% );\n    text-align: left;\n    padding: 10px;\n    box-sizing: border-box;\n}\nfieldset.vehicle-template fieldset>label>span {\n    display:block;\n}\n\nfieldset.vehicle-template fieldset>label>input[type=\"text\"] {\n    min-width: unset;\n    display: inline-block;\n    width: calc( 100% - 20px );\n    margin: 0;\n}\n\n\n\nfieldset.vehicle-template .option>label {\n    display: block;\n    margin: 0;\n}\n\nfieldset.vehicle-template .option>select {\n    margin: 0;\n}"
+                     "style": "fieldset.vehicle-template fieldset>label, fieldset.vehicle-template fieldset>.option {\n    display: inline-block;\n    white-space: nowrap;\n    width: calc( 20% );\n    text-align: left;\n    padding: 10px;\n    box-sizing: border-box;\n}\nfieldset.vehicle-template fieldset>label>span {\n    display:block;\n}\n\nfieldset.vehicle-template fieldset>label>input[type=\"text\"] {\n    min-width: unset;\n    display: inline-block;\n    width: calc( 100% - 20px );\n    margin: 0;\n}\n\n\n\nfieldset.vehicle-template .option>label {\n    display: block;\n    margin: 0;\n}\n\nfieldset.vehicle-template .option>select {\n    margin: 0;\n}\n\nfieldset.vehicle-template {\n    background-color: rgb(35 71 104 / 15%) !important;\n}"
                   },
                   {
                      "type": "markdown",
@@ -758,6 +763,10 @@
                      "classNames": "",
                      "items": [
                         {
+                           "type": "markdown",
+                           "text": "### Vehicle {{vehicleIndex + 1}}"
+                        },
+                        {
                            "type": "fieldset",
                            "legend": "",
                            "classNames": "",
@@ -782,14 +791,14 @@
                                  "type": "textfield",
                                  "label": "Year",
                                  "placeholder": "yyyy",
-                                 "format": ""
+                                 "format": "number"
                               },
                               {
                                  "fieldName": "totalPrice{{vehicleIndex}}",
                                  "type": "textfield",
                                  "label": "Total Paid",
                                  "placeholder": "CAD",
-                                 "format": ""
+                                 "format": "number"
                               },
                               {
                                  "fieldName": "fuelType{{vehicleIndex}}",
@@ -923,49 +932,49 @@
                            "type": "textfield",
                            "label": "Workplace",
                            "placeholder": "1-7",
-                           "format": ""
+                           "format": "number(1,7)"
                         },
                         {
                            "fieldName": "priorityChargingGrocery",
                            "type": "textfield",
                            "label": "Grocery Store",
                            "placeholder": "1-7",
-                           "format": "number"
+                           "format": "number(1,7)"
                         },
                         {
                            "fieldName": "priorityChargingShoppingMall",
                            "type": "textfield",
                            "label": "Shopping Mall",
                            "placeholder": "1-7",
-                           "format": "number"
+                           "format": "number(1,7)"
                         },
                         {
                            "fieldName": "priorityChargingOnStreet",
                            "type": "textfield",
                            "label": "On-Street",
                            "placeholder": "1-7",
-                           "format": "number"
+                           "format": "number(1,7)"
                         },
                         {
                            "fieldName": "priorityChargingEnRoute",
                            "type": "textfield",
                            "label": "En-route",
                            "placeholder": "1-7",
-                           "format": "number"
+                           "format": "number(1,7)"
                         },
                         {
                            "fieldName": "priorityChargingGasStation",
                            "type": "textfield",
                            "label": "Gas Station",
                            "placeholder": "1-7",
-                           "format": "number"
+                           "format": "number(1,7)"
                         },
                         {
                            "fieldName": "priorityChargingOther",
                            "type": "textfield",
                            "label": "Other Distination",
                            "placeholder": "1-7",
-                           "format": "number"
+                           "format": "number(1,7)"
                         },
                         {
                            "fieldName": "priorityChargingOtherName",
