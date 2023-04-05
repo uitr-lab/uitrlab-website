@@ -2,3 +2,5 @@ push.sh
 .DS_Store
 .credentials.json
 survey/web/workshop/mail.php
+survey/web/current/database.json
+survey/web/current/share.json
