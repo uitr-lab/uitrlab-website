@@ -23,6 +23,7 @@ label>span, label[for="requiresParking"] {
 .markdown h2 {
     font-size: 40px;
     color: #448770;
+    line-height: 1em;
 }
 
 .markdown p {
@@ -39,6 +40,21 @@ h3.complete-page {
     color: #448770;
 }
 
+form.survey-view fieldset label>input[type="checkbox"]{
+    vertical-align: top;
+}
+
+@media (max-width: 650px) {
+    form.survey-view label>input[type="text"] {
+        min-width: 100%;
+    }
+
+    label>span, label[for="requiresParking"] {
+        text-indent: 0;
+        margin-left: 20px;
+    }
+}
+
 </style>
 
 </head><body></body>
@@ -53,7 +69,7 @@ h3.complete-page {
    var renderer=new SurveyRenderer();
    renderer.setOptions({
 		completeLabel:"Register",
-      completePageHtml:"Registration complete! Thank you."
+        completePageHtml:"Registration complete! Thank you."
    });
    var survey="rsvp.json";
    document.body.appendChild(renderer.render(survey));
