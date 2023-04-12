@@ -37,7 +37,128 @@ form.survey-view, pre.survey-data {
 
 h3.complete-page {
     font-size: 40px;
-    color: #448770;
+    color: #19489c;
+    line-height: 1em;
+}
+
+form.survey-view fieldset label>input[type="checkbox"]{
+    vertical-align: top;
+}
+
+@media (max-width: 650px) {
+    form.survey-view label>input[type="text"] {
+        min-width: 100%;
+    }
+
+    label>span, label[for="requiresParking"] {
+        text-indent: 0;
+        margin-left: 20px;
+    }
+
+
+    form.survey-view nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        text-align: right;
+        width: calc( 100% - 100px );
+        padding: 50px;
+        margin: 0;
+        background: white;
+        box-shadow: 0 0 3px #0000007d;
+        border-top: 3px solid #19489c;
+    }
+
+    div:has(nav) {
+        padding-bottom: 100px;
+    }
+
+}
+
+
+h2#uitr--travel-survey-workshop:before {
+    content: "";
+    position: absolute;
+    width: 100vw;
+    height: 400px;
+    background: #002145;
+    left: calc( 50% - 50vw  );
+    bottom: -160px;
+    z-index: -2;
+}
+
+h2#uitr--travel-survey-workshop:after {
+    content: "";
+    position: absolute;
+    width: 100vw;
+    height: 200px;
+    left: calc( 50% - 50vw );
+    bottom: -280px;
+    z-index: -1;
+    background-image: url("registration.png");
+    background-size:cover
+}
+
+h2#uitr--travel-survey-workshop {
+    position: relative;
+    margin-top: -30px;
+}
+
+body {
+    margin: 0;
+}
+
+span.markdown + fieldset {
+    margin-top: 140px;
+}
+
+span.markdown + fieldset, span.markdown + fieldset + fieldset {
+    padding-top: 10px;
+}
+
+.markdown h2, .markdown p {
+    color: white;
+}
+
+form.survey-view nav button {
+    background: #19489c;
+    color: white;
+}
+
+
+body:after {
+    content: "";
+    background-image: url("uitr.png");
+    width: 300px;
+    height: 150px;
+    position: absolute;
+    display: inline-block;
+    top: -35px;
+    right: -33px;
+    z-index: -1;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    scale: 0.8;
+}
+
+body:before {
+    background-image: url("https://cdn.ubc.ca/clf/7.0.4/img/ubc7-clf-sprite-white.png");
+    background-repeat: no-repeat;
+    content: "";
+    width: 70px;
+    height: 100px;
+    position: absolute;
+    display: inline-block;
+    top: -14px;
+    right: 170px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position: 32px 14px;
+    margin-left: -15px;
+    min-width: 115px;
+    z-index: 1;
+    scale: 0.8;
 }
 
 form.survey-view fieldset label>input[type="checkbox"]{
