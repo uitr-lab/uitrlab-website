@@ -161,6 +161,11 @@ body:before {
     scale: 0.8;
 }
 
+body:has(.complete-page):before, body:has(.complete-page):after {
+
+    display: none;
+}
+
 form.survey-view fieldset label>input[type="checkbox"]{
     vertical-align: top;
 }
@@ -173,6 +178,12 @@ form.survey-view fieldset label>input[type="checkbox"]{
     label>span, label[for="requiresParking"] {
         text-indent: 0;
         margin-left: 20px;
+    }
+}
+
+@media (max-width: 900px) {
+   h2#uitr--travel-survey-workshop {
+        margin-top: 0px;
     }
 }
 

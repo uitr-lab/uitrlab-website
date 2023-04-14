@@ -1,0 +1,33 @@
+{
+   "name": "Email Registrants",
+   "type": "section",
+   "uuid": "3aedf38c-cf69-429e-99c2-1f0a8f7abf1e",
+   "items": [
+      {
+         "name": "Page One",
+         "type": "set",
+         "items": [
+            {
+               "type": "markdown",
+               "text": "## Email Registrants"
+            },
+            {
+               "fieldName": "subject",
+               "type": "textfield",
+               "label": "Subject",
+               "placeholder": "email subject",
+               "format": ""
+            },
+            {
+               "fieldName": "body",
+               "type": "textarea",
+               "label": "Body",
+               "placeholder": "email body",
+               "format": ""
+            }
+         ]
+      }
+   ],
+   "navigationLogic": "return 0;",
+   "then": "terminate"
+}
