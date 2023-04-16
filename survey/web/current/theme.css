@@ -1,0 +1,182 @@
+@charset "utf-8";
+@import url("/css/font-awesome.min.css");
+
+.intro-page .survey-view:before {
+    content: "";
+    position: absolute;
+    width: 100vw;
+    height: 300px;
+    background-color: #002145;
+    left: calc( 50% - 50vw  );
+    top:0;
+    z-index: -2;
+    background-image: url(cars.png);
+    background-repeat: no-repeat;
+}
+
+.intro-page .survey-view:after {
+    content: "";
+    position: absolute;
+    width: 100vw;
+    height: 200px;
+    left: calc( 50% - 50vw );
+    top:130px;
+    z-index: -1;
+    background-image: url("registration.png");
+    background-size:cover
+}
+
+.intro-page h2#climate-action-awareness--transit-survey {
+    color: white;
+    font-size: 40px;
+    line-height: 1.2em;
+}
+
+@keyframes myanim {
+    50% {
+       top: 150px;
+    }
+ }
+
+
+ .intro-page .survey-view:after {
+    animation: myanim  6s ease-in-out infinite
+
+}
+
+.intro-page h3#about-this-survey {
+    margin-top: 280px;
+}
+
+
+
+
+body:before {
+    background-image: url("https://cdn.ubc.ca/clf/7.0.4/img/ubc7-clf-sprite-blue.png");
+    background-repeat: no-repeat;
+    content: "";
+    width: 70px;
+    height: 100px;
+    position: absolute;
+    display: inline-block;
+    top: -14px;
+    right: 170px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position: 32px 14px;
+    margin-left: -15px;
+    min-width: 115px;
+    z-index: 1;
+    scale: 0.8;
+}
+
+body:after {
+    content: "";
+    background-image: url("uitr-white.png");
+    width: 300px;
+    height: 150px;
+    position: absolute;
+    display: inline-block;
+    top: -35px;
+    right: -33px;
+    z-index: -1;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    scale: 0.8;
+}
+
+
+body.intro-page:before {
+    background-image: url("https://cdn.ubc.ca/clf/7.0.4/img/ubc7-clf-sprite-white.png");
+}
+
+body.intro-page:after {
+    background-image: url("uitr.png");
+}
+
+@media screen and (min-width: 800px){
+
+.intro-page span.markdown:first-child + .markdown, .intro-page span.markdown:first-child + .markdown + .markdown {
+    display: inline-block;
+    width: calc( 50%  - 20px );
+    margin-right: 20px;
+}
+
+}
+
+.intro-page form.survey-view nav {
+    text-align: center;
+}
+
+
+form.survey-view nav button, form.survey-view .nav button {
+    background: #174494;
+    color: white;
+    transition: box-shadow 0.7s, background 0.7s; 
+}
+
+form.survey-view nav button:hover, form.survey-view .nav button:hover {
+    
+    background: #132f60;
+    color: white;
+    box-shadow:0 0 5px #00000087; 
+    transition: box-shadow 0.3s, background 0.3s; 
+}
+
+
+form.survey-view, pre.survey-data {
+    background: transparent;
+}
+
+
+
+ul.progress-indicator {
+    text-align: center;
+}
+
+ul.progress-indicator>li {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    border: 3px solid #174494
+    ;
+    margin: 0 5px;
+    position: relative;
+}
+
+ul.progress-indicator>li:after {
+    content: "\0f061";
+    font-family: FontAwesome;
+    position: absolute;
+    right: -16.5px;
+    top: 14px;
+    color: #1744946b;
+    font-size: 13px;
+}
+
+ul.progress-indicator>li:last-child:after {
+    display:none;
+}
+
+ul.progress-indicator>li.active {
+    background-color: #587ab7;
+}
+
+ul.progress-indicator>li.complete {
+    background-color: #9cb5e1;
+}
+
+ul.progress-indicator>li.complete:before {
+    content: "\0f00c";
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    left: 0;
+    top: 0;
+    line-height: 50px;
+    font-family: 'FontAwesome';
+    color: #174494;
+}
