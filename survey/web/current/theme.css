@@ -133,6 +133,8 @@ form.survey-view, pre.survey-data {
 
 ul.progress-indicator {
     text-align: center;
+    margin-bottom: 100px;
+    margin-top: 100px;
 }
 
 ul.progress-indicator>li {
@@ -140,10 +142,11 @@ ul.progress-indicator>li {
     width: 50px;
     height: 50px;
     border-radius: 100%;
-    border: 3px solid #174494
-    ;
+    border: 3px solid #174494;
     margin: 0 5px;
     position: relative;
+    opacity: 0.4;
+    vertical-align: top;
 }
 
 ul.progress-indicator>li:after {
@@ -162,21 +165,121 @@ ul.progress-indicator>li:last-child:after {
 
 ul.progress-indicator>li.active {
     background-color: #587ab7;
+    opacity: 1;
 }
+
 
 ul.progress-indicator>li.complete {
     background-color: #9cb5e1;
+    opacity: 1;
 }
 
-ul.progress-indicator>li.complete:before {
+ul.progress-indicator>li.complete:before, ul.progress-indicator>li.active:before  {
     content: "\0f00c";
     position: absolute;
     width: 50px;
     height: 50px;
     text-align: center;
     left: 0;
-    top: 0;
+    top: 45px;
     line-height: 50px;
     font-family: 'FontAwesome';
     color: #174494;
+}
+
+
+
+ul.progress-indicator>li:first-child {
+    background-image: url('icons/login.png');
+    background-size: 100%;
+}
+
+
+ul.progress-indicator>li:first-child+li {
+    background-image: url('icons/house.png');
+    background-size: 100%;
+}
+
+ul.progress-indicator>li:first-child+li+li {
+    background-image: url('icons/cars.png');
+    background-size: 100%;
+}
+
+ul.progress-indicator>li:first-child+li+li+li {
+    background-image: url('icons/family.png');
+    background-size: 100%;
+}
+
+ul.progress-indicator>li:first-child+li+li+li+li {
+    background-image: url('icons/schedule.png');
+    background-size: 100%;
+}
+
+
+
+
+ul.progress-indicator>li.active:before {
+    content: "";
+    animation: slidein 2s infinite;
+    animation-direction: normal;
+    font-size: 35px;
+    line-height: 30px;
+}
+
+@keyframes slidein {
+  0% {
+    content: "";
+  }
+  20% {
+    content: ".";
+  }
+  50% {
+    content: "..";
+  }
+  80% {
+    content: "...";
+  }
+  100% {
+    content: "";
+  }
+}
+
+
+
+span.radio>label+label, span.radio>label+label+label {
+    display: inline-block;
+    width: fit-content;
+    margin-left: 20px;
+}
+
+
+
+form.survey-view, pre.survey-data {
+    max-width: 600px;
+}
+
+.intro-page  form.survey-view, pre.survey-data {
+    max-width: 1000px;
+}
+
+
+
+
+form.survey-view>main>div:has(>.focus)>fieldset {
+    display:none;
+}
+form.survey-view>main>div:has(>.focus)>fieldset.focus {
+    display:block;
+}
+form.survey-view>main>div:has(>.focus) nav>button {
+    display:none;
+}
+form.survey-view>main>div:has(>.focus) nav>button.focus-next {
+    display:inline-block;
+}
+form.survey-view>main>div:has(>.focus)>.focus + nav>button {
+    display: inline-block;
+}
+form.survey-view>main>div:has(>.focus)>.focus + nav>button.focus-next {
+    display: none;
 }

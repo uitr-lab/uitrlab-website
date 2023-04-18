@@ -24,6 +24,51 @@ form.survey-view {
 
    var renderer=new SurveyRenderer();
    var survey="survey.json";
+
+
+
+  renderer.on('renderedNode', function(data, nodeEl){
+
+   if(data.name!=='Household'&&data.name!=='Vehicle Details'){
+      return;
+   }
+
+   var allFieldsets=Array.prototype.slice.call(nodeEl.querySelector('fieldset').parentNode.childNodes).filter(function(el){
+      return el.tagName.toLowerCase()=='fieldset' || el.classList.contains('fieldset');
+   });
+
+
+   var i=0;
+   allFieldsets[i].classList.add('focus');
+
+   nodeEl.querySelector('nav').appendChild(new SurveyRenderer.Element('button', {
+      html:"Next",
+      "class":"focus-next",
+      events:{
+         click:function(e){
+
+            e.stopPropagation();
+            e.preventDefault();
+
+            allFieldsets[i].classList.remove('focus');
+            i++;
+
+            //child list may change
+            allFieldsets=Array.prototype.slice.call(nodeEl.querySelector('fieldset').parentNode.childNodes).filter(function(el){
+               return el.tagName.toLowerCase()=='fieldset' || el.classList.contains('fieldset');
+            });
+
+            allFieldsets[i].classList.add('focus');
+
+         }
+      }
+   }))
+
+  });
+
+
+
+
    document.body.appendChild(renderer.render(survey));
 
 })();
