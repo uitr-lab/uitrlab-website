@@ -29,7 +29,9 @@ form.survey-view {
 
   renderer.on('renderedNode', function(data, nodeEl){
 
-   if(data.name!=='Household'&&data.name!=='Vehicle Details'){
+   if(data.name!=='Household'
+      &&data.name!=='Vehicle Details'
+      &&data.name!=='Member Details'){
       return;
    }
 
@@ -57,6 +59,10 @@ form.survey-view {
             allFieldsets=Array.prototype.slice.call(nodeEl.querySelector('fieldset').parentNode.childNodes).filter(function(el){
                return el.tagName.toLowerCase()=='fieldset' || el.classList.contains('fieldset');
             });
+
+            while(window.getComputedStyle(allFieldsets[i]).display === "none"){
+               i++;
+            }
 
             allFieldsets[i].classList.add('focus');
 
