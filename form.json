@@ -1,0 +1,96 @@
+{
+   "name": "Page Content",
+   "type": "section",
+   "uuid": "e80f793a-e262-495c-bc1c-c2bb3d4f7b87",
+   "items": [
+      {
+         "name": "Page One",
+         "type": "set",
+         "items": [
+            {
+               "type": "template",
+               "template": "menuItem",
+               "classNames": "",
+               "items": [
+                  {
+                     "type": "label",
+                     "text": "Menu Item"
+                  },
+                  {
+                     "fieldName": "label",
+                     "type": "textfield",
+                     "label": "Label",
+                     "placeholder": "answer here",
+                     "format": ""
+                  },
+                  {
+                     "fieldName": "link",
+                     "type": "textfield",
+                     "label": "Link",
+                     "placeholder": "answer here",
+                     "format": ""
+                  }
+               ]
+            },
+            {
+               "type": "template",
+               "template": "contentSection",
+               "classNames": "",
+               "items": [
+                  {
+                     "type": "label",
+                     "text": "Content Section"
+                  },
+                  {
+                     "fieldName": "heading",
+                     "type": "textfield",
+                     "label": "Heading",
+                     "placeholder": "answer here",
+                     "format": ""
+                  },
+                  {
+                     "fieldName": "subheading",
+                     "type": "textfield",
+                     "label": "Subheading",
+                     "placeholder": "answer here",
+                     "format": ""
+                  },
+                  {
+                     "fieldName": "markdown",
+                     "type": "textarea",
+                     "label": "Markdown",
+                     "placeholder": "answer here",
+                     "format": ""
+                  }
+               ]
+            },
+            {
+               "type": "custom",
+               "template": "",
+               "classNames": "",
+               "items": [
+                  {
+                     "type": "template.menuItem",
+                     "variables": "{ \"variable1\":true, \"variable2\":false }"
+                  }
+               ],
+               "renderScript": "return defaultRenderFn(); "
+            },
+            {
+               "type": "custom",
+               "template": "",
+               "classNames": "",
+               "items": [
+                  {
+                     "type": "template.contentSection",
+                     "variables": "{ \"variable1\":true, \"variable2\":false }"
+                  }
+               ],
+               "renderScript": "return defaultRenderFn(); "
+            }
+         ]
+      }
+   ],
+   "navigationLogic": "return 0;",
+   "then": "terminate"
+}

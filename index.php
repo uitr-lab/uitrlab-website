@@ -19,12 +19,13 @@
 
 		header video{
 			opacity: 0.3;
-    		filter: grayscale(0.8);
-			
-		    left: calc( 50% - 750px );
-    		bottom: -150px;
+		    filter: grayscale(0.8);
+		    left: 0;
+		    bottom: -150px;
 		    position: absolute;
-    
+		    width: 100vw;
+		    min-height: 1000px;
+		    min-width: 1500px;
 		}
 
 		body, html {
@@ -66,6 +67,20 @@
 			margin-left: -15px;
 			min-width: 115px;
 
+		}
+
+		div#ubc7-logo:after {
+		    content: "";
+		    background-image: url(uitr-white.png);
+		    width: 200px;
+		    height: 80px;
+		    display: inline-block;
+		    position: absolute;
+		    left: 100%;
+		    top: 19px;
+		    background-size: contain;
+		    background-repeat: no-repeat;
+		    background-position: center;
 		}
 
 		div#ubc7-logo>a {

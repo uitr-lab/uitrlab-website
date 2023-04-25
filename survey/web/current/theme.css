@@ -283,3 +283,103 @@ form.survey-view>main>div:has(>.focus)>.focus + nav>button {
 form.survey-view>main>div:has(>.focus)>.focus + nav>button.focus-next {
     display: none;
 }
+
+
+
+
+
+
+.timer{
+    text-align:center;
+    font-size:100px;
+    line-height:100px;
+}
+.timer ul {
+    display: inline-block;
+    margin:auto;
+  white-space:nowrap;
+}
+
+.timer li {
+    display: inline-block;
+    text-align:center;
+    padding:0 10px;
+    min-width: 20%;
+    box-sizing:border-box;
+    color: #164594;
+
+}
+
+.timer label {
+    font-size:15px;
+    line-height:20px;
+    color:black;
+}
+
+
+.timer h3 {
+    font-size: 30px;
+    text-align: left;
+}
+
+.timer h3:last-child {
+    text-align: right;
+    font-size: 25px;
+}
+
+.timer.closed div {
+    color: crimson;
+}
+
+
+
+
+.list-render .collapse, .list-render .active {
+    border: 3px solid #164594;
+    border-radius: 5px;
+    margin:5px 0;
+}
+
+.list-render .collapse fieldset {
+    display: none;
+}
+
+
+.list-render .collapse {
+    border-color: #00000036;
+}
+
+.list-render .active .edit-btn{
+    display: none;
+}
+
+.list-render .nav.inline-nav {
+    text-align: right;
+}
+
+
+form.survey-view  .list-render .nav button.edit-btn {
+    background: limegreen;
+}
+
+form.survey-view .list-render .nav button.remove-btn {
+    background: crimson;
+    opacity: 0.4;
+}
+
+form.survey-view .list-render .nav button.remove-btn:hover {
+    opacity: 1;
+}
+
+.list-render .collapse{
+    --label: attr(data-start-time)" - " attr(data-end-time);
+}
+
+.list-render .collapse:before {
+    content: var(--label, "");
+    font-size: 20px;
+    display: inline-block;
+    float: left;
+    line-height: 25px;
+    padding: 20px;
+}
