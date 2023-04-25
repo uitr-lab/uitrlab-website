@@ -359,7 +359,7 @@ form.survey-view>main>div:has(>.focus)>.focus + nav>button.focus-next {
 
 
 form.survey-view  .list-render .nav button.edit-btn {
-    background: limegreen;
+   
 }
 
 form.survey-view .list-render .nav button.remove-btn {
@@ -373,13 +373,70 @@ form.survey-view .list-render .nav button.remove-btn:hover {
 
 .list-render .collapse{
     --label: attr(data-start-time)" - " attr(data-end-time);
+    display: none;
 }
 
-.list-render .collapse:before {
+.schedule-vis .schedule-item{
+    --label: attr(data-start-time)" - " attr(data-end-time);
+}
+
+.list-render .collapse:before, .schedule-vis .schedule-item:before {
     content: var(--label, "");
     font-size: 20px;
     display: inline-block;
     float: left;
     line-height: 25px;
     padding: 20px;
+}
+
+.schedule-vis .schedule-item:before {
+    line-height: 12px;
+}
+
+
+
+form.survey-view:has(.schedule-vis) {
+    padding-left: 290px;
+}
+
+.schedule-vis {
+    position: fixed;
+    left: 0;
+    height: 100vh;
+    width: 250px;
+    border-right: 1px solid #0000001a;
+    display: inline-block;
+    top: 0;
+    background: lightgray;
+    box-sizing: border-box;
+    box-shadow: 0 0 5px #00000099;
+}
+
+
+.schedule-item {
+    background: white;
+    min-height: 50px;
+    margin: 10px;
+    border-radius: 3px;
+    border:3px solid white;
+}
+
+.schedule-item.active {
+    border-color: #184494;
+}
+
+@media(max-width: 750px) {
+
+    .schedule-vis {
+        display: none;
+    }
+
+    form.survey-view:has(.schedule-vis) {
+        padding:40px;
+    }
+
+    .list-render .collapse{
+        display: block;
+    }
+
 }
