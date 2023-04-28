@@ -419,6 +419,35 @@ form.survey-view:has(.schedule-vis) {
     margin: 10px;
     border-radius: 3px;
     border:3px solid white;
+    position: relative;
+}
+
+
+.list-render .nav.inline-nav {
+    display: none;
+}
+
+.list-render>.collapse{
+    height: 60px;
+    transition: scale .1s;
+    cursor: pointer;
+}
+
+.list-render>.collapse:hover {
+
+    scale: 1.01;
+    transition: scale .05s;
+    box-shadow: 0 0 5px #00000021;
+}
+
+.list-render>div{
+     position:relative;
+}
+
+.list-render>div>fieldset {
+    padding-top: 0;
+    padding-bottom: 0;
+    background: transparent;
 }
 
 .schedule-item.active {
@@ -439,4 +468,319 @@ form.survey-view:has(.schedule-vis) {
         display: block;
     }
 
+}
+
+
+
+
+
+
+
+
+
+
+select {
+    width: 100px;
+    text-overflow: ellipsis;
+}
+
+
+
+
+
+.schedule-item {
+    transition: scale .1s;
+    cursor:pointer;
+}
+
+.schedule-item:hover {
+    scale: 1.02;
+    transition: scale .05s;
+    box-shadow: 0 0 5px #00000045;
+}
+
+
+
+
+
+
+.schedule-item[data-location-type="0"], .list-render>div[data-location-type="0"]{
+    background-color:#dcffe1;
+}
+
+.schedule-item[data-location-type="1"], .list-render>div[data-location-type="1"] {
+    background-color: #ffcfb5;
+}
+
+.schedule-item[data-location-type="2"], .list-render>div[data-location-type="2"] {
+    background-color: #e8e8e8;
+}
+
+
+.schedule-item[data-location-type="0"][data-in-home-activity="0"], .list-render>div[data-location-type="0"][data-in-home-activity="0"] {
+    background-color:#dce8ff;
+}
+
+
+.schedule-item:after, .list-render>div:after  {
+    content:"";
+
+    background-size: 110%;
+    background-position: center;
+    width:50px;
+    height:50px;
+    display:inline-block;
+    position:absolute;
+    top:0;
+    right:0;
+}
+
+.list-render>div:after {
+    margin-top:5px;
+    margin-right:5px;
+    scale:1.2;
+}
+
+
+.schedule-item[data-location-type="0"]:after, .list-render>div[data-location-type="0"]:after {
+     background-image: url("icons/activities/home.png");
+}
+
+.schedule-item[data-location-type="1"]:after, .list-render>div[data-location-type="1"]:after {
+     background-image: url("icons/activities/work.png");
+}
+
+.schedule-item[data-location-type="2"]:after, .list-render>div[data-location-type="2"]:after {
+     background-image: url("icons/activities/map.png");
+}
+
+
+
+.schedule-item[data-location-type="0"][data-in-home-activity="0"]:after, .list-render>div[data-location-type="0"][data-in-home-activity="0"]:after {
+    background-image: url("icons/activities/sleeping.png");
+    background-size: 200%;
+}
+.schedule-item[data-location-type="0"][data-in-home-activity="1"]:after, .list-render>div[data-location-type="0"][data-in-home-activity="1"]:after {
+    background-image: url(icons/activities/desk.png);
+}
+.schedule-item[data-location-type="0"][data-in-home-activity="2"]:after, .list-render>div[data-location-type="0"][data-in-home-activity="2"]:after {
+    background-image: url(icons/activities/desk.png);
+}
+.schedule-item[data-location-type="0"][data-in-home-activity="3"]:after, .list-render>div[data-location-type="0"][data-in-home-activity="3"]:after  {
+    background-image: url(icons/activities/desk.png);
+}
+.schedule-item[data-location-type="0"][data-in-home-activity="4"]:after, .list-render>div[data-location-type="0"][data-in-home-activity="4"]:after  {
+    background-image: url(icons/activities/desk.png);
+}
+.schedule-item[data-location-type="0"][data-in-home-activity="5"]:after, .list-render>div[data-location-type="0"][data-in-home-activity="5"]:after  {
+    background-image: url(icons/activities/desk.png);
+}
+
+.schedule-item[data-location-type="0"][data-in-home-activity="6"]:after, .list-render>div[data-location-type="0"][data-in-home-activity="6"]:after  {
+    background-image: url(icons/activities/cleaning.png);
+}
+
+
+
+.schedule-item[data-location-type="0"][data-in-home-activity="7"]:after, .list-render>div[data-location-type="0"][data-in-home-activity="7"]:after  {
+    background-image: url(icons/activities/desk.png);
+}
+.schedule-item[data-location-type="0"][data-in-home-activity="8"]:after, .list-render>div[data-location-type="0"][data-in-home-activity="8"]:after  {
+    background-image: url(icons/activities/desk.png);
+}
+.schedule-item[data-location-type="0"][data-in-home-activity="9"]:after, .list-render>div[data-location-type="0"][data-in-home-activity="9"]:after  {
+    background-image: url(icons/activities/desk.png);
+}
+.schedule-item[data-location-type="0"][data-in-home-activity="10"]:after , .list-render>div[data-location-type="0"][data-in-home-activity="10"]:after {
+    background-image: url(icons/activities/desk.png);
+}
+
+
+
+
+.schedule-item[data-location-type="0"][data-in-home-activity="11"]:after, .list-render>div[data-location-type="0"][data-in-home-activity="11"]:after{
+    background-image: url(icons/activities/relax.png);
+}
+
+.schedule-item[data-location-type="0"][data-in-home-activity="12"]:after, .list-render>div[data-location-type="0"][data-in-home-activity="12"]:after{
+    background-image: url(icons/activities/exercise.png);
+}
+
+
+.schedule-item[data-location-type="0"][data-in-home-activity="13"]:after, .list-render>div[data-location-type="0"][data-in-home-activity="13"]:after{
+    background-image: url(icons/activities/social.png);
+}
+
+
+
+
+
+
+
+.schedule-item[data-location-type="1"][data-work-activity="3"]:after, .list-render>div[data-location-type="1"][data-work-activity="3"]:after {
+     background-image: url("icons/activities/books.png");
+}
+.schedule-item[data-location-type="1"][data-work-activity="4"]:after, .list-render>div[data-location-type="1"][data-work-activity="4"]:after {
+     background-image: url("icons/activities/books.png");
+}
+
+
+
+
+
+
+.schedule-item:has(.transit) {
+    margin-top: 60px;
+}
+
+.transit {
+    position: absolute;
+    top: -40px;
+    height: 40px;
+    width: calc( 100% - 40px );
+    left: 20px;
+    transition: left .3s;
+}
+
+:hover>.transit {
+    top: -40.5px;
+    left: 40px;
+    transition: left .9s;
+}
+
+
+
+
+.transit:before {
+    content:"";
+    background-size: 120%;
+    background-position: center;
+    width: 70px;
+    height: 25px;
+    display:inline-block;
+    position:absolute;
+    bottom: 0;
+    right: 35px;
+    background-image: url("icons/transit/dots.png");
+    opacity: 0.5;
+}
+
+
+.transit:after {
+    content:"";
+
+    background-size: 90%;
+    background-position: center;
+    width:50px;
+    height:50px;
+    display:inline-block;
+    position:absolute;
+    top:0;
+    right:0;
+    background-image: url("icons/transit/car.png");
+
+}
+
+[data-transit-mode="2"] .transit:after {
+    background-image: url("icons/transit/bus.png");
+}
+
+[data-transit-mode="3"] .transit:after {
+    background-image: url("icons/transit/walk.png");
+    background-size: 70%;
+}
+
+[data-transit-mode="4"] .transit:after {
+    background-image: url("icons/transit/bike.png");
+}
+
+[data-transit-mode="5"] .transit:after {
+    background-image: url("icons/transit/taxi.png");
+}
+
+[data-transit-mode="8"] .transit:after {
+    background-image: url("icons/transit/motorcycle.png");
+}
+
+[data-transit-mode="9"] .transit:after {
+    background-image: url("icons/transit/scooter.png");
+}
+[data-transit-mode="10"] .transit:after {
+    background-image: url("icons/transit/bike.png");
+}
+
+[data-transit-mode="11"] .transit:after {
+    background-image: url("icons/transit/bus.png");
+}
+[data-transit-mode="12"] .transit:after {
+    background-image: url("icons/transit/bus.png");
+}
+[data-transit-mode="13"] .transit:after {
+    background-image: url("icons/transit/bus.png");
+}
+
+
+
+.travel-duration:after {
+    content: attr(data-travel) "m";
+    position: absolute;
+    top: -40px;
+    left: 0px;
+    font-style: italic;
+    color: #646464;
+    font-size: 14px;
+}
+
+.activity:after {
+    white-space: nowrap;
+    content: attr(data-activity);
+    margin-top: 40px;
+    display: block;
+    padding: 4px 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 15px;
+    margin-bottom: 10px;
+    text-indent: 10px;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.activity[data-activity="select an option"]:after {
+    font-style: italic;
+    content: "pending";
+    text-align: right;
+    color: #464646;
+}
+
+.schedule-item>.drag-end {
+    position: absolute;
+    display: inline-block;
+    width: 60px;
+    height: 20px;
+    background: gray;
+    left: calc( 25% - 30px);
+    bottom: -15px;
+    border-radius: 5px;
+    opacity: 0.3;
+}
+
+.schedule-item>.drag-start {
+    position: absolute;
+    display: inline-block;
+    width: 60px;
+    height: 20px;
+    background: white;
+    left: calc( 25% - 30px);
+    top: -15px;
+    border-radius: 5px;
+    opacity: .3;
+}
+
+
+
+.schedule-item .duration {
+    display: block;
+    height: var(--durationHeight, 0px);
 }
