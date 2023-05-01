@@ -758,24 +758,60 @@ select {
     position: absolute;
     display: inline-block;
     width: 60px;
-    height: 20px;
-    background: gray;
-    left: calc( 25% - 30px);
-    bottom: -15px;
+    height: 12px;
+    background: #f3f3f3;
+    left: calc( 50% - 30px );
+    bottom: -8px;
     border-radius: 5px;
-    opacity: 0.3;
+    opacity: 0;
+    transition: opacity 0.3s;
+    text-align: center;
+    box-shadow: 0 0 2px #0000006e;
+    border: 1px solid white;
+}
+
+.schedule-item>.drag-end:hover {
+    text-align: center;
+    box-shadow: 0 0 3px #00000082;
+    background: white;
 }
 
 .schedule-item>.drag-start {
     position: absolute;
     display: inline-block;
+    opacity: 0;
     width: 60px;
     height: 20px;
     background: white;
     left: calc( 25% - 30px);
     top: -15px;
     border-radius: 5px;
-    opacity: .3;
+    transition: opacity 0.3s;
+}
+
+
+.schedule-item>.drag-end:before {
+    content: "\0f0c9";
+    font-family: 'FontAwesome';
+    font-size: 10px;
+    line-height: 4px;
+    position: relative;
+    top: -7px;
+    color: #8e8e8e;
+}
+
+
+.schedule-item:hover>.drag-end, .schedule-item:has(+:hover)>.drag-end {
+    opacity:1;
+}
+
+
+.resizing.schedule-item>.drag-end {
+    opacity:0;
+}
+
+.resizing.schedule-item +.schedule-item>.drag-end, .schedule-item:has(+.resizing.schedule-item)>.drag-end {
+    opacity:0;
 }
 
 
@@ -783,4 +819,112 @@ select {
 .schedule-item .duration {
     display: block;
     height: var(--durationHeight, 0px);
+}
+
+
+.schedule-item.resizing .duration:after {
+    content: "";
+    height: var(--resizeHeight, 0px);
+    transition: height 0.2s;
+}
+
+
+.schedule-item.resizing .duration:before {
+    content: "add " var(--addDuration) "m";
+    position: absolute;
+    top: calc( 100% + var(--resizeHeight) - 40px );
+    color: #767676;
+    font-style: italic;
+    right: 30px;
+    transition: top 0.2s;
+    font-size: 12px;
+}
+
+
+.schedule-item.resizing.rs-neg .duration:after {
+    height: calc( var(--durationHeight, 0px) + var(--resizeHeight, 0px) + 75px);
+    background: linear-gradient(180deg, #ffffff26, #ffffff6b);
+    top: 0;
+    border-bottom: 1px solid white;
+}
+
+.schedule-item.resizing.rs-neg .duration:before {
+    content: "" var(--addDuration) "m";
+}
+
+.schedule-item.resizing {
+    margin-bottom: calc( var(--resizeHeight, 0px) + 10px );
+    transition: margin-bottom 0.2s;
+}
+
+.duration:after {
+   
+    position: absolute;
+    top: 100%;
+    height: 0;
+    display: inline-block;
+    width: 100%;
+    left: 0;
+    background: linear-gradient(180deg, #ffffff26, white);
+    border-radius: 0 0 10px 10px;
+    z-index: -1;
+    box-sizing: border-box;
+}
+
+.rs>.schedule-item:hover {
+    /*cancel hover effect*/
+    scale: 1;
+    box-shadow: none;
+}
+
+
+
+
+
+
+
+fieldset.vehicle-template {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+
+fieldset.vehicle-template fieldset>label, fieldset.vehicle-template fieldset>.option {
+    display: inline-block;
+    white-space: nowrap;
+    width: calc( 20% );
+    text-align: left;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+fieldset.vehicle-template fieldset>label>span {
+    display:block;
+}
+
+fieldset.vehicle-template fieldset>label>input[type="text"], 
+fieldset.vehicle-template fieldset>label>input[type="number"],
+fieldset.vehicle-template fieldset>span>select {
+    min-width: unset;
+    display: inline-block;
+    width: calc( 100% - 20px );
+    margin: 0;
+
+    border: 1px solid #666666;
+    vertical-align: top;
+}
+
+
+
+fieldset.vehicle-template .option>label {
+    display: block;
+    margin: 0;
+}
+
+fieldset.vehicle-template .option>select {
+    margin: 0;
+}
+
+fieldset.vehicle-template {
+    background-color: rgb(35 71 104 / 15%) !important;
 }
