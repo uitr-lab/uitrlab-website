@@ -936,17 +936,6 @@ fieldset.vehicle-template {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 .feedback {
     position: fixed;
     bottom: 0;
@@ -1038,4 +1027,16 @@ fieldset.vehicle-template {
 .feedback.hidden>button:before {
     content: "\0f071";
     color: #964545;
+}
+
+form.survey-view .radio>label:has(input) {
+    background: #00000007;
+    padding: 5px 20px;
+    border-radius: 3px;
+}
+
+form.survey-view .radio>label>input {
+    vertical-align: text-bottom;
+    margin-left: 20px;
+
 }
