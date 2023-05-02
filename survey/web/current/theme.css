@@ -130,6 +130,10 @@ form.survey-view, pre.survey-data {
 }
 
 
+form.survey-view label[for^="priority"]>input {
+    min-width: 55px;
+}
+
 
 ul.progress-indicator {
     text-align: center;
@@ -927,4 +931,111 @@ fieldset.vehicle-template .option>select {
 
 fieldset.vehicle-template {
     background-color: rgb(35 71 104 / 15%) !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.feedback {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: min-content;
+    text-align: left;
+    right: 0;
+    background: #ffffff7d;
+    backdrop-filter: blur(6px);
+    border-top: 2px solid #0a479c;
+    z-index: 1;
+}
+
+
+.feedback.hidden {
+    width: fit-content;
+    background: transparent;
+    border: none;
+}
+
+.feedback>button {
+    background: transparent;
+    border: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.feedback>button:before {
+    content: "\0f00d";
+    font-family: 'FontAwesome';
+    font-size: 30px;
+}
+
+
+
+.feedback form.survey-view:after{
+    display:none;
+}
+.feedback form.survey-view:before{
+    display:none;
+}
+
+.feedback form.survey-view {
+    margin:auto;
+    float: right;
+}
+
+.feedback form.survey-view label>span {
+    display: block;
+}
+
+.feedback form.survey-view label>textarea {
+    width: 100%;
+    height: 100px;
+    max-width: 5000px;
+}
+
+
+
+
+.feedback.hidden .survey-view>main>div>* {
+    display: none;
+}
+
+.feedback.hidden .survey-view>main>div>.markdown {
+    display: block;
+}
+.feedback.hidden .survey-view>main>div>.markdown>* {
+    display: none;
+}
+.feedback.hidden .survey-view>main>div>.markdown>h2 {
+    display: block;
+    color: #964545;
+    font-weight: 100;
+}
+
+
+
+.feedback.hidden form.survey-view {
+    padding: 0 60px;
+}
+
+.feedback.hidden>button {
+    top: 15px;
+    right: 15px;
+}
+
+.feedback.hidden>button:before {
+    content: "\0f071";
+    color: #964545;
 }
