@@ -18,11 +18,13 @@ form.survey-view {
 
 
 <script src="form.js"></script>
+<script src="schedule.js"></script>
 <script type="text/javascript">
 
 (function(){ 
 
    var renderer=new SurveyRenderer();
+   renderer.setConfigValue("googleMapApiKey", "AIzaSyBDQWoCWAODeGfH4aRxX7IzHuYM1p_WrT4");
    var survey="survey.json";
 
 
@@ -76,6 +78,69 @@ form.survey-view {
 
 
    document.body.appendChild(renderer.render(survey));
+
+
+
+
+
+   
+
+})();
+
+
+
+
+(function(){ 
+
+   var renderer=new SurveyRenderer();
+   renderer.setOptions({
+      completeLabel:"Send Feedback",
+                completePageHtml:"Feedback Sent! Thank you."
+   });
+   var feedback="feedback/feedback.json";
+   var div=document.body.appendChild(new SurveyRenderer.Element('div', {
+     events:{
+        click:function(e){
+           if(!div.classList.contains('active')){
+            div.classList.add('active');
+            div.classList.remove('hidden');
+            return;
+         }
+        }
+     }
+   
+
+   }));
+
+   div.appendChild(renderer.render(feedback));
+
+   div.appendChild(new SurveyRenderer.Element('button',{
+
+      events:{ click:function(e){ 
+
+         e.stopPropagation();
+         e.preventDefault();
+
+         if(div.classList.contains('active')){
+            div.classList.remove('active');
+            div.classList.add('hidden');
+            return;
+         }
+         div.classList.add('active');
+         div.classList.remove('hidden');
+      }}
+   }))
+
+   div.classList.add('feedback');
+   div.classList.add('hidden');
+   renderer.on('complete', function(){
+      renderer.postFormData('feedback/submit.php');
+      setTimeout(function(){
+         div.classList.remove('active');
+         div.classList.add('hidden');
+         renderer.restart();
+      }, 2000);
+   })
 
 })();
 
