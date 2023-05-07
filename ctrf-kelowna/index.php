@@ -243,6 +243,21 @@
 
 		main.active>span.last, section.active>span.last {
 		    z-index:1;
+			opacity:1;
+		}
+		main.active:has(>.last+div:last-child):after, section.active:has(>.last+div:last-child):after{
+			z-index:1;
+		}
+		main.active:has(>.last+div:last-child):after, section.active:has(>.last+div:last-child):after{
+			opacity:1;
+			transition:opacity 1s;
+		}
+
+		main.active:has(>.active):after, section.active:has(>.active):after{
+			opacity:0;
+		}
+		main.active:has(>.active:first-child):after, section.active:has(>.active:first-child):after{
+			opacity:1;
 		}
 
 
@@ -254,7 +269,7 @@
 		    left: 0;
 		     opacity: 0;
 		    /* z-index: 1; */
-		    transition: opacity 2s;
+		    transition: none;
 		    z-index:1;
 		}
 
