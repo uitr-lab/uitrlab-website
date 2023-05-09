@@ -1040,3 +1040,12 @@ form.survey-view .radio>label>input {
     margin-left: 20px;
 
 }
+
+
+form.survey-view .radio>label[for]:has(input[type="radio"]) {
+    cursor: pointer;
+}
+
+form.survey-view .radio>label:has(input):hover {
+    background: #0000000f;
+}
