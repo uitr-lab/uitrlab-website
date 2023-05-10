@@ -275,12 +275,22 @@ form.survey-view>main>div:has(>.focus)>fieldset {
 form.survey-view>main>div:has(>.focus)>fieldset.focus {
     display:block;
 }
+
+
+
+
 form.survey-view>main>div:has(>.focus) nav>button {
     display:none;
 }
 form.survey-view>main>div:has(>.focus) nav>button.focus-next {
     display:inline-block;
 }
+
+form.survey-view>main>div:has(>.focus) nav>button.focus-back {
+    display: inline-block;
+    float: left;
+}
+
 form.survey-view>main>div:has(>.focus)>.focus + nav>button {
     display: inline-block;
 }
@@ -414,6 +424,8 @@ form.survey-view:has(.schedule-vis) {
     background: lightgray;
     box-sizing: border-box;
     box-shadow: 0 0 5px #00000099;
+    overflow-y: auto;
+    padding-bottom: 50px;
 }
 
 
@@ -927,6 +939,10 @@ fieldset.vehicle-template .option>label {
 
 fieldset.vehicle-template .option>select {
     margin: 0;
+}
+
+span.option>select {
+    min-width: 140px;
 }
 
 fieldset.vehicle-template {
