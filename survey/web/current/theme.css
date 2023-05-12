@@ -1105,3 +1105,47 @@ ul.progress-indicator>li.with-navigation:hover {
     transition: transform 0.1s, box-shadow 0.1s, opacity 0.1s;
 }
 
+button.geolocate, button.maplocate {
+    font-size: 0rem;
+    background: none;
+    border: none;
+    float: right;
+    position: relative;
+    top: -30px;
+    left: 30px;
+    cursor: pointer;
+}
+
+button.geolocate:after, button.maplocate:after {
+    font-size: 1.7rem;
+    content: "\0f05b";
+    font-family: 'FontAwesome';
+}
+
+button.maplocate:after {
+    font-size: 1.5rem;
+    content: "\0f041";
+}
+
+button.geolocate:hover, button.maplocate:hover {
+    transform: scale(1.1);
+    color: #174494;
+    top: -31px;
+}
+
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+
+button.geolocate.loading {
+    animation: spin 3s linear;
+    animation-iteration-count: infinite;
+    color: #174494;
+    cursor: wait;
+}
