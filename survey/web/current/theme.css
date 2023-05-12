@@ -116,6 +116,10 @@ form.survey-view nav button, form.survey-view .nav button {
     transition: box-shadow 0.7s, background 0.7s; 
 }
 
+form.survey-view button.section-back, form.survey-view button.page-back{
+    float:left;
+}
+
 form.survey-view nav button:hover, form.survey-view .nav button:hover {
     
     background: #132f60;
@@ -291,13 +295,26 @@ form.survey-view>main>div:has(>.focus) nav>button.focus-back {
     float: left;
 }
 
-form.survey-view>main>div:has(>.focus)>.focus + nav>button {
+form.survey-view>main>div:has(>.focus)>.focus + nav>button.section-next {
     display: inline-block;
 }
 form.survey-view>main>div:has(>.focus)>.focus + nav>button.focus-next {
     display: none;
 }
 
+
+
+
+
+form.survey-view>main>div:has(>.first-focus.focus) nav>button.focus-back {
+    display: none;
+}
+
+form.survey-view>main>div:has(>.first-focus.focus) nav>button.section-back {
+
+    display: inline;
+    float: left;
+}
 
 
 
@@ -1065,3 +1082,26 @@ form.survey-view .radio>label[for]:has(input[type="radio"]) {
 form.survey-view .radio>label:has(input):hover {
     background: #0000000f;
 }
+
+
+form.survey-view .radio>label:has(input:checked) {
+    background: #16459429;
+}
+
+
+
+
+
+
+
+ul.progress-indicator>li.with-navigation {
+    cursor: pointer;
+}
+
+ul.progress-indicator>li.with-navigation:hover {
+    transform:scale(1.03);
+    box-shadow: 0 0 3px #00000075;
+    opacity: 1;
+    transition: transform 0.1s, box-shadow 0.1s, opacity 0.1s;
+}
+
