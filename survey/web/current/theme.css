@@ -1244,3 +1244,16 @@ button.close-btn:after {
     font-family: 'FontAwesome';
     color: black;
 }
+
+
+
+form.survey-view .charging-priority fieldset {
+    padding: 10px;
+    border: unset;
+    margin: unset;
+}
+
+form.survey-view .charging-priority  .radio>label:has(input) {
+    padding: 5px 11px;
+    margin-left: 5px;
+}
