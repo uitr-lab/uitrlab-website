@@ -139,13 +139,13 @@ form.survey-view label[for^="priority"]>input {
 }
 
 
-ul.progress-indicator {
+ul.progress-indicator, ul.member-progress-indicator {
     text-align: center;
     margin-bottom: 100px;
     margin-top: 100px;
 }
 
-ul.progress-indicator>li {
+ul.progress-indicator>li, ul.member-progress-indicator>li {
     display: inline-block;
     width: 50px;
     height: 50px;
@@ -194,8 +194,6 @@ ul.progress-indicator>li.complete:before, ul.progress-indicator>li.active:before
     font-family: 'FontAwesome';
     color: #174494;
 }
-
-
 
 ul.progress-indicator>li:first-child {
     background-image: url('icons/login.png');
@@ -251,6 +249,59 @@ ul.progress-indicator>li.active:before {
     content: "";
   }
 }
+
+
+
+
+
+ul.member-progress-indicator>li{
+    background-image: url(icons/profile-info.png);
+    background-size: 100%;
+}
+
+ul.member-progress-indicator.activities>li{
+    background-image: url(icons/schedule.png);
+    background-size: 100%;
+}
+
+ul.member-progress-indicator>li.active{
+    background-color: #9cb5e1;
+    opacity: 1;
+}
+
+
+
+
+ul.member-progress-indicator>li.active:before {
+    content: "";
+    animation: slidein 2s infinite;
+    animation-direction: normal;
+    font-size: 35px;
+    line-height: 30px;
+}
+ul.member-progress-indicator>li.complete:before, ul.member-progress-indicator>li.active:before {
+    content: "\0f00c";
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    left: 0;
+    top: 45px;
+    line-height: 50px;
+    font-family: 'FontAwesome';
+    color: #174494;
+}
+
+.survey-view:has(.member-progress-indicator) ul.progress-indicator>li.active:before{
+    animation:none;
+    content: var(--progress);
+    font-family:sans-serif;
+    font-size: 13px;
+    line-height: 48px;
+    font-weight: 600;
+}
+
+
 
 
 
@@ -1112,7 +1163,7 @@ button.geolocate, button.maplocate {
     float: right;
     position: relative;
     top: -30px;
-    left: 30px;
+    left: -7px;
     cursor: pointer;
 }
 
