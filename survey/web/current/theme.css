@@ -511,6 +511,10 @@ form.survey-view:has(.schedule-vis) {
     display: none;
 }
 
+form.survey-view:has(+.survey-data) .list-render .nav.inline-nav {
+    display:block;
+}
+
 .list-render>.collapse{
     height: 60px;
     transition: scale .1s;
