@@ -26,10 +26,14 @@
     background-size:cover
 }
 
-.intro-page h2#climate-action-awareness--transit-survey {
+.intro-page h2#climate-action-awareness--transit-survey, .intro-page h2#british-columbia-activity-time-use-survey-bc-atus {
     color: white;
-    font-size: 40px;
+    font-size: 38px;
     line-height: 1.2em;
+}
+
+.intro-page .node-label{
+    color:white;
 }
 
 @keyframes myanim {
