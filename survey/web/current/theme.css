@@ -596,20 +596,20 @@ select {
 
 
 
-.schedule-item[data-location-type="0"], .list-render>div[data-location-type="0"]{
+.schedule-item[data-location-type="0"], .list-render>div[data-location-type="0"], .schedule-item[data-location-type="0"] .travel-duration:before{
     background-color:#dcffe1;
 }
 
-.schedule-item[data-location-type="1"], .list-render>div[data-location-type="1"] {
+.schedule-item[data-location-type="1"], .list-render>div[data-location-type="1"], .schedule-item[data-location-type="1"] .travel-duration:before {
     background-color: #ffcfb5;
 }
 
-.schedule-item[data-location-type="2"], .list-render>div[data-location-type="2"] {
+.schedule-item[data-location-type="2"], .list-render>div[data-location-type="2"], .schedule-item[data-location-type="2"] .travel-duration:before {
     background-color: #e8e8e8;
 }
 
 
-.schedule-item[data-location-type="0"][data-in-home-activity="0"], .list-render>div[data-location-type="0"][data-in-home-activity="0"] {
+.schedule-item[data-location-type="0"][data-in-home-activity="0"], .list-render>div[data-location-type="0"][data-in-home-activity="0"], .schedule-item[data-location-type="0"][data-in-home-activity="0"] .travel-duration:before {
     background-color:#dce8ff;
 }
 
@@ -727,7 +727,7 @@ select {
 
 .transit {
     position: absolute;
-    top: -40px;
+    top: -50px;
     height: 40px;
     width: calc( 100% - 40px );
     left: 20px;
@@ -735,7 +735,7 @@ select {
 }
 
 :hover>.transit {
-    top: -40.5px;
+    top: -50.5px;
     left: 40px;
     transition: left .9s;
 }
@@ -812,6 +812,35 @@ select {
 }
 
 
+.travel-duration:before {
+    content: "";
+    position: absolute;
+    top: -50px;
+    left: -2px;
+    font-style: italic;
+    color: #646464;
+    font-size: 14px;
+    height: 40px;
+    z-index: -3;
+    /* background: #ffcfb5; */
+
+     background: white; 
+
+    border-radius: 3px 3px 0 0;
+    opacity: 0.5;
+    border: 3px solid white;
+    display: inline-block;
+    width: 100%;
+}
+
+:hover>.travel-duration:before {
+    opacity: 1;
+}
+
+.schedule-item.active .travel-duration:before {
+    border-color: #184494;
+}
+
 
 .travel-duration:after {
     content: attr(data-travel) "m";
@@ -821,6 +850,7 @@ select {
     font-style: italic;
     color: #646464;
     font-size: 14px;
+    text-indent: 10px;
 }
 
 .activity:after {
