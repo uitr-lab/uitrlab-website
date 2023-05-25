@@ -1312,3 +1312,30 @@ form.survey-view .charging-priority  .radio>label:has(input) {
     padding: 5px 11px;
     margin-left: 5px;
 }
+
+
+.list-render>div:first-child .nav button.remove-btn{
+    display:none;
+}
+
+.schedule-vis button{
+    padding: 0.7rem 1.2rem;
+    border: 1px dashed;
+    border-radius: 3px;
+    cursor: pointer;
+    box-shadow: 0 0 3px transparent;
+    margin: 10px;
+    font-size: 14px;
+    background: transparent;
+    color: #616161;
+    transition: box-shadow 0.7s, background 0.7s, font-size 0.7s;
+}
+
+.schedule-vis button:hover{
+    background: #132f60;
+    color: white;
+    box-shadow: 0 0 5px #00000087;
+    transition: box-shadow 0.3s, background 0.3s, font-size 0.3s;
+    border: 1px solid #132f60;
+    /* font-size: 18px; */
+}
