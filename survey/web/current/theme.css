@@ -833,7 +833,7 @@ select {
     width: 100%;
 }
 
-:hover>.travel-duration:before {
+.desktop :hover>.travel-duration:before, .touchscreen .active>.travel-duration:before{
     opacity: 1;
 }
 
@@ -923,7 +923,7 @@ select {
 }
 
 
-.schedule-item:hover>.drag-end, .schedule-item:has(+:hover)>.drag-end {
+.desktop .schedule-item:hover>.drag-end, .touchscreen .schedule-item.active>.drag-end {
     opacity:1;
 }
 
@@ -1362,14 +1362,25 @@ form.survey-view .charging-priority  .radio>label:has(input) {
     font-size: 14px;
     background: transparent;
     color: #616161;
+    
+}
+
+.desktop .schedule-vis button{
     transition: box-shadow 0.7s, background 0.7s, font-size 0.7s;
 }
 
-.schedule-vis button:hover{
+.desktop .schedule-vis button:hover{
     background: #132f60;
     color: white;
     box-shadow: 0 0 5px #00000087;
     transition: box-shadow 0.3s, background 0.3s, font-size 0.3s;
     border: 1px solid #132f60;
     /* font-size: 18px; */
+}
+
+.touchscreen .schedule-vis button{
+    background: #132f60;
+    color: white;
+    box-shadow: 0 0 5px #00000087;
+    border: 1px solid #132f60;
 }
