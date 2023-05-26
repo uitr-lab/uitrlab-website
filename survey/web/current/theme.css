@@ -1384,3 +1384,9 @@ form.survey-view .charging-priority  .radio>label:has(input) {
     box-shadow: 0 0 5px #00000087;
     border: 1px solid #132f60;
 }
+
+
+form.survey-view label>textarea {
+    width: 100%;
+    min-height: 100px;
+}
