@@ -5,7 +5,7 @@
     content: "";
     position: absolute;
     width: 100vw;
-    height: 300px;
+    height: 260px;
     background-color: #002145;
     left: calc( 50% - 50vw  );
     top:0;
@@ -22,38 +22,172 @@
     left: calc( 50% - 50vw );
     top:130px;
     z-index: -1;
-    background-image: url("registration.png");
+    background-image: url("banner-s.png");
     background-size:cover
 }
 
 .intro-page h2#climate-action-awareness--transit-survey, .intro-page h2#british-columbia-activity-time-use-survey-bc-atus {
     color: white;
-    font-size: 38px;
+    
+    font-size: 22px;
     line-height: 1.2em;
+
+    position: sticky;
+    top: 10px;
+
+    text-shadow: none;
+}
+
+.intro-page h2#british-columbia-activity-time-use-survey-bc-atus + * {
+    margin-top: 150px;
+}
+
+.intro-page div#sky-art:before {
+    position: fixed;
+    z-index: -1;
+    width: 100vw;
+    height: calc( 100vh - 240px );
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(1deg, #eff6ff, #eff6ff, #eff6ff,transparent,transparent);
+    content: "";
+}
+
+.intro-page div#city-art:before {
+    content: "";
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 300px;
+    background-image: url(mountains-s.png);
+    background-size: cover;
+    z-index: -1;
+    background-position: center top;
+    opacity: 0.7;
+    background-repeat: no-repeat;
+    max-height: 30vw;
+    max-height: min( 30vw, 30vh);
+}
+
+.intro-page div#city-art:after {
+    content: "";
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 200px;
+    background-image: url(city-s.png);
+    background-size: cover;
+    z-index: 0;
+    pointer-events: none;
+    background-position: center;
+    max-height: 20vw;
+    max-height: min( 20vw, 20vh);
+}
+.intro-page .markdown {
+    text-shadow: 0 0 2px #ffffff75, 0 0 5px #ffffff9c;
+}
+
+@media only screen and (min-width: 1342px) {
+    .intro-page div#city-art:after {
+        background-size: contain;
+    }
+}
+
+
+h2#british-columbia-activity-time-use-survey-bc-atus ~ h2 {
+    color: #0a479c;
+}
+
+@media only screen and (min-width: 400px) {
+    
+    .intro-page h2#climate-action-awareness--transit-survey, .intro-page h2#british-columbia-activity-time-use-survey-bc-atus{
+        font-size: 25px;
+        margin-top: -10px;
+    }
+
+    .intro-page h2#british-columbia-activity-time-use-survey-bc-atus + * {
+        margin-top: 230px;
+    }
+
+}
+
+@media only screen and (min-width: 750px) {
+    
+    .intro-page h2#climate-action-awareness--transit-survey, .intro-page h2#british-columbia-activity-time-use-survey-bc-atus{
+        font-size: 38px;
+    }
+
 }
 
 .intro-page .node-label{
     color:white;
 }
 
+
+
+.intro-page form.survey-view:after {
+    top: 65px;
+    background-position: -140px;
+}
+
 @keyframes myanim {
     50% {
-       top: 150px;
+       top: 90px;
     }
  }
 
+
+@media only screen and (min-width: 400px) {
+
+    @keyframes myanim {
+        50% {
+        top: 150px;
+        }
+    }
+
+    .intro-page form.survey-view:after {
+        top:130px;
+        background-position: left;
+    }
+
+}
 
  .intro-page .survey-view:after {
     animation: myanim  6s ease-in-out infinite
 
 }
 
-.intro-page h3#about-this-survey {
-    margin-top: 280px;
+
+
+
+.sticking.intro-page .survey-view:before, .sticking.intro-page .survey-view:after {
+    opacity: 0;
+}
+.intro-page .survey-view:before, .intro-page .survey-view:after {
+    transition:opacity 0.2s;
+}
+.sticking.intro-page h2#climate-action-awareness--transit-survey, .sticking.intro-page h2#british-columbia-activity-time-use-survey-bc-atus{
+    color: #164594;
 }
 
+.sticking h2#british-columbia-activity-time-use-survey-bc-atus:before {
+    position: absolute;
+    content: "";
+    width: 100vw;
+    height: calc( 100% + 20px );
+    background: white;
+    left: calc( -50vw + 50% );
+    top: -10px;
+    z-index: -1;
+    box-shadow: 0 0 3px #00000066;
+    border-bottom: 3px solid #184694;
+}
 
-
+.sticking h2#british-columbia-activity-time-use-survey-bc-atus {
+    font-size: 22px;
+}
 
 body:before {
     background-image: url("https://cdn.ubc.ca/clf/7.0.4/img/ubc7-clf-sprite-blue.png");
@@ -64,14 +198,14 @@ body:before {
     position: absolute;
     display: inline-block;
     top: -14px;
-    right: 170px;
+    left: 20px;
     background-repeat: no-repeat;
     background-position: center;
     background-position: 32px 14px;
     margin-left: -15px;
     min-width: 115px;
     z-index: 1;
-    scale: 0.8;
+    transform: scale(0.5);
 }
 
 body:after {
@@ -82,35 +216,80 @@ body:after {
     position: absolute;
     display: inline-block;
     top: -35px;
-    right: -33px;
+    right: 0;
     z-index: -1;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    scale: 0.8;
+    transform: scale(0.5);
 }
 
+
+body:after {
+    background-image: url(canada.png);
+    clip-path: inset( 54% 36% 0 0);
+    top: -54px;
+    right: -100px;
+}
+
+
+.intro-page .feedback{
+    display: none;
+}
 
 body.intro-page:before {
     background-image: url("https://cdn.ubc.ca/clf/7.0.4/img/ubc7-clf-sprite-white.png");
 }
 
 body.intro-page:after {
-    background-image: url("uitr.png");
+    background-image: url(canada-white.png);
+    clip-path: inset( 54% 36% 0 0);
+    top: -54px;
+    right: -100px;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+form.survey-view nav {
+    margin: 20px 10px;
 }
 
 @media screen and (min-width: 800px){
 
-.intro-page span.markdown:first-child + .markdown, .intro-page span.markdown:first-child + .markdown + .markdown {
-    display: inline-block;
-    width: calc( 50%  - 20px );
-    margin-right: 20px;
-}
+    .intro-page span.markdown:first-child + .markdown, .intro-page span.markdown:first-child + .markdown + .markdown {
+        display: inline-block;
+        width: calc( 50%  - 20px );
+        margin-right: 20px;
+    }
+
+    body.intro-page:before {
+        transform: scale(0.8);
+    }
+
+    body:after {
+  
+    }
+
+    body.intro-page:after {
+        transform: scale(0.8);
+        top: -61px;
+    }
+
+    form.survey-view nav {
+        margin: 50px;
+    }
 
 }
 
 .intro-page form.survey-view nav {
     text-align: center;
+    margin-bottom: 30vh;
+}
+
+form.survey-view nav{
+    white-space: nowrap;
 }
 
 
@@ -135,6 +314,14 @@ form.survey-view nav button:hover, form.survey-view .nav button:hover {
 
 form.survey-view, pre.survey-data {
     background: transparent;
+    padding: 40px 20px;
+}
+
+@media only screen and (min-width: 400px) {
+    form.survey-view, pre.survey-data {
+        padding: 40px;
+    }
+
 }
 
 
@@ -145,14 +332,19 @@ form.survey-view label[for^="priority"]>input {
 
 ul.progress-indicator, ul.member-progress-indicator {
     text-align: center;
-    margin-bottom: 100px;
-    margin-top: 100px;
+    margin-bottom: 50px;
+    margin-top: 30px;
+    padding:0;
 }
 
 ul.progress-indicator>li, ul.member-progress-indicator>li {
     display: inline-block;
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
+
+    max-width: 10vw;
+    max-height: 10vw;
+
     border-radius: 100%;
     border: 3px solid #174494;
     margin: 0 5px;
@@ -161,14 +353,15 @@ ul.progress-indicator>li, ul.member-progress-indicator>li {
     vertical-align: top;
 }
 
+
 ul.progress-indicator>li:after {
     content: "\0f061";
     font-family: FontAwesome;
     position: absolute;
-    right: -16.5px;
-    top: 14px;
     color: #1744946b;
-    font-size: 13px;
+    font-size: 10px;
+    right: -15px;
+    top: 3px;
 }
 
 ul.progress-indicator>li:last-child:after {
@@ -189,11 +382,11 @@ ul.progress-indicator>li.complete {
 ul.progress-indicator>li.complete:before, ul.progress-indicator>li.active:before  {
     content: "\0f00c";
     position: absolute;
-    width: 50px;
-    height: 50px;
+    width: 100%;
+    height: 100%;
     text-align: center;
     left: 0;
-    top: 45px;
+    top: 25px;
     line-height: 50px;
     font-family: 'FontAwesome';
     color: #174494;
@@ -227,7 +420,6 @@ ul.progress-indicator>li:first-child+li+li+li+li {
 
 
 
-
 ul.progress-indicator>li.active:before {
     content: "";
     animation: slidein 2s infinite;
@@ -235,6 +427,9 @@ ul.progress-indicator>li.active:before {
     font-size: 35px;
     line-height: 30px;
 }
+
+
+
 
 @keyframes slidein {
   0% {
@@ -286,11 +481,11 @@ ul.member-progress-indicator>li.active:before {
 ul.member-progress-indicator>li.complete:before, ul.member-progress-indicator>li.active:before {
     content: "\0f00c";
     position: absolute;
-    width: 50px;
-    height: 50px;
+    width: 100%;
+    height: 100%;
     text-align: center;
     left: 0;
-    top: 45px;
+    top: 25px;
     line-height: 50px;
     font-family: 'FontAwesome';
     color: #174494;
@@ -326,7 +521,12 @@ form.survey-view, pre.survey-data {
 }
 
 
-
+button.focus-back, button.focus-next {
+    /**
+     * if css :has is not supported then hide fucus buttons
+     */
+    display: none;
+}
 
 form.survey-view>main>div:has(>.focus)>fieldset {
     display:none;
@@ -373,7 +573,33 @@ form.survey-view>main>div:has(>.first-focus.focus) nav>button.section-back {
 
 
 
+@media only screen and (min-width: 400px) {
 
+    ul.progress-indicator, ul.member-progress-indicator{
+        margin-bottom: 100px;
+        margin-top: 100px;
+    }
+  
+    ul.progress-indicator>li, ul.member-progress-indicator>li{
+        width: 50px;
+        height: 50px;
+    }
+
+    ul.progress-indicator>li:after{
+        top: 14px;
+        font-size: 13px;
+        right: -16.5px;
+    }
+
+    ul.progress-indicator>li.complete:before, ul.progress-indicator>li.active:before{
+        top: 45px;
+    }
+
+    ul.member-progress-indicator>li.complete:before, ul.member-progress-indicator>li.active:before {
+        top: 45px;
+    }
+
+}
 
 .timer{
     text-align:center;
@@ -466,6 +692,18 @@ form.survey-view .list-render .nav button.remove-btn:hover {
     --label: attr(data-start-time)" - " attr(data-end-time);
 }
 
+
+.schedule-vis .schedule-item, .list-render .collapse {
+    --label: attr(data-start-time-am-pm)" - " attr(data-end-time-am-pm);
+}
+
+
+.schedule-vis .schedule-item[data-index="0"], .list-render .collapse[data-index="0"] {
+    --label: " -- " attr(data-end-time-am-pm);
+}
+
+
+
 .list-render .collapse:before, .schedule-vis .schedule-item:before {
     content: var(--label, "");
     font-size: 20px;
@@ -475,8 +713,10 @@ form.survey-view .list-render .nav button.remove-btn:hover {
     padding: 20px;
 }
 
+
 .schedule-vis .schedule-item:before {
     line-height: 12px;
+    font-size: 16px;
 }
 
 
@@ -515,6 +755,14 @@ form.survey-view:has(.schedule-vis) {
     display: none;
 }
 
+.list-render .active .nav.inline-nav {
+    display:block
+}
+
+.list-render .active:first-child .nav.inline-nav {
+    display:none
+}
+
 form.survey-view:has(+.survey-data) .list-render .nav.inline-nav {
     display:block;
 }
@@ -546,7 +794,15 @@ form.survey-view:has(+.survey-data) .list-render .nav.inline-nav {
     border-color: #184494;
 }
 
+@media(min-width: 749px) {
+
+    body:has(.schedule-vis):before{
+        left:250px;
+    }
+}
+
 @media(max-width: 750px) {
+
 
     .schedule-vis {
         display: none;
@@ -1051,6 +1307,20 @@ span.option>select {
     min-width: 140px;
 }
 
+form.survey-view  span.option>select {
+    height: 30px;
+    text-indent: 10px;
+    color: black;
+    box-sizing: border-box;
+    background-color: #ececec;
+}
+
+form.survey-view label>input, form.survey-view .option>select {
+    border-radius: 2px;
+    border: 1px solid #5a5a5a;
+    font-size: 13px;
+}
+
 fieldset.vehicle-template {
     background-color: rgb(35 71 104 / 15%) !important;
 }
@@ -1065,12 +1335,15 @@ fieldset.vehicle-template {
     height: min-content;
     text-align: left;
     right: 0;
-    background: #ffffff7d;
+    background: #ffffffe6;
     backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(2px) grayscale(1);
     border-top: 2px solid #0a479c;
     z-index: 1;
 }
-
+.feedback:has(.desktop) {
+    background: #ffffff7d;
+}
 
 .feedback.hidden {
     width: fit-content;
@@ -1104,6 +1377,8 @@ fieldset.vehicle-template {
 .feedback form.survey-view {
     margin:auto;
     float: right;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .feedback form.survey-view label>span {
@@ -1133,6 +1408,7 @@ fieldset.vehicle-template {
     display: block;
     color: #964545;
     font-weight: 100;
+    font-size:0;
 }
 
 
@@ -1141,7 +1417,17 @@ fieldset.vehicle-template {
     padding: 0 60px;
 }
 
+
 .feedback.hidden>button {
+    top: -15px;
+    right: 0px;
+}
+
+.feedback.hidden .survey-view.desktop>main>div>.markdown>h2 {
+    font-size: 1.5em;
+}
+
+.feedback.hidden>div:has(.desktop)+button{
     top: 15px;
     right: 15px;
 }
@@ -1153,19 +1439,22 @@ fieldset.vehicle-template {
 
 form.survey-view .radio>label:has(input) {
     background: #00000007;
-    padding: 5px 20px;
+    padding: 5px 14px;
     border-radius: 3px;
 }
 
 form.survey-view .radio>label>input {
     vertical-align: text-bottom;
-    margin-left: 20px;
+    margin-left: 12px;
 
 }
 
 
 form.survey-view .radio>label[for]:has(input[type="radio"]) {
     cursor: pointer;
+}
+form.survey-view .radio>label[for]:has(input[type="radio"]) input {
+    vertical-align: middle;
 }
 
 form.survey-view .radio>label:has(input):hover {
@@ -1243,6 +1532,10 @@ button.geolocate.loading {
 
 
 
+
+
+
+
 .google-map-overlay:before {
     content: "";
     position: fixed;
@@ -1252,25 +1545,44 @@ button.geolocate.loading {
     left: 0;
     z-index: -1;
     backdrop-filter: blur(2px) grayscale(1);
+    -webkit-backdrop-filter: blur(2px) grayscale(1);
+    background: #ffffffe6;
 }
+body:has(.desktop) .google-map-overlay {
+    background: #ffffff7d;
+}
+
 
 
 .google-map-overlay {
     position: fixed;
-    width: calc( 100vw - 100px );
+    width: 100vw;
     height: calc( 100vh - 115px );
+    height: calc( 100svh - 115px );
     top: 50px;
-    left: 50px;
     z-index: 1;
 }
+
+
+
 
 .google-map-overlay>div {
     width: 100%;
     height: 100%;
     z-index: 2;
-    border-radius: 6px;
-    border: 1px solid black;
     box-shadow: 0 0 3px #00000073;
+}
+
+@media only screen and (min-width: 400px) {
+    .google-map-overlay {
+        width: calc( 100vw - 100px );
+        left: 50px;
+    }
+
+    .google-map-overlay>div {
+        border-radius: 6px;
+        border: 1px solid black;
+    }
 }
 
 body:has(.google-map-overlay) {
@@ -1348,6 +1660,72 @@ form.survey-view .charging-priority  .radio>label:has(input) {
 }
 
 
+
+form.survey-view .charging-priority .radio>label[for]:has(input[type="radio"]) {
+    width: calc( 100% / 7 - 25px);
+    text-align: center;
+    line-height: 10px;
+    font-size: 13px;
+    padding: 10px;
+    padding-bottom: 5px;
+}
+
+
+
+
+
+
+form.survey-view .charging-priority .radio>label[for]:has(input[type="radio"]) input {
+    margin: 0 1px;
+    width: 0px;
+}
+
+@media only screen and (min-width: 400px) {
+
+    form.survey-view .charging-priority .radio>label {
+        display: inline-block;
+        vertical-align: middle;
+        width: 90px;
+        text-align: right;
+        padding-right: 10px;
+    }
+
+    form.survey-view .charging-priority .radio>label[for]:has(input[type="radio"]) {
+        width: 30px;
+    }
+
+    form.survey-view .charging-priority .radio>label[for]:has(input[type="radio"]) input {
+        margin: 0 7px;
+    }
+
+    form.survey-view.desktop .charging-priority .radio>label[for]:has(input[type="radio"]) input {
+        margin: 0;
+    }
+}
+
+form.survey-view.desktop .radio>label:has(input:checked) {
+    background: #5879b7;
+    color: white;
+}
+
+form.survey-view .charging-priority .radio>label:has(input.unchecked) {
+    background: #ffcb005e;
+}
+
+form.survey-view .charging-priority .charging-priority fieldset fieldset {
+    padding: unset;
+}
+
+.desktop form.survey-view .charging-priority .radio>label[for]:has(input[type="radio"]) input {
+    width:unset;
+}
+
+form.survey-view .charging-priority fieldset {
+    padding: 0;
+    background: transparent;
+}
+
+
 .list-render>div:first-child .nav button.remove-btn{
     display:none;
 }
@@ -1390,3 +1768,129 @@ form.survey-view label>textarea {
     width: 100%;
     min-height: 100px;
 }
+
+form.survey-view fieldset label>span {
+    display: block;
+}
+
+form.survey-view label>input[type="text"]{
+    width:350px;
+    max-width: calc( 100% - 40px);
+    min-width: 50px;
+}
+
+form.survey-view fieldset {
+    min-inline-size: 100%;
+    box-sizing: border-box;
+}
+
+form.survey-view fieldset label, form.survey-view fieldset .option{
+    width: unset;
+}
+
+
+
+
+span.markdown.info-icon>h3, span.markdown.info-icon>p {
+    display: none;
+}
+span.markdown.info-icon:before {
+    content: "\0f05a";
+    font-family: 'FontAwesome';
+    color: #174594;
+    float: right;
+    display: inline-block;
+    cursor: help;
+}
+
+
+span.markdown.info-icon {
+    display: block;
+    width: 100%;
+    height: 25px;
+    position: relative;
+}
+span.markdown.info-icon:hover{
+    height:auto;
+}
+
+span.markdown.info-icon:hover {
+    background: #d6e4f77a;
+    padding: 10px 15px;
+    padding-top: 1px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    color: #174494;
+}
+
+span.markdown.info-icon:hover>h3, span.markdown.info-icon:hover>p{
+    display:block;
+}
+
+span.markdown.info-icon:hover:after {
+    width: calc( 100% + 60px );
+    height: calc( 100% + 60px );
+    position: absolute;
+    top: -30px;
+    left: -30px;
+    content:"";
+}
+
+
+
+
+
+
+
+[data-location-type="0"][data-in-home-activity="0"] label[for^="endTime"]>span:before {
+    content: "What Time did you wake up?";
+    font-size: 1rem;
+}
+
+[data-location-type="0"][data-in-home-activity="0"] label[for^="endTime"]>span {
+    font-size: 0em;
+}
+
+
+.desktop label:has(button.maplocate) button, .desktop label:has(button.geolocate) button{
+    float:unset;
+    position:relative;
+    top: 5px;
+    left: 5px;
+}
+
+ .desktop .activity-row label:has(button.maplocate) button, .desktop .activity-row label:has(button.geolocate) button{
+    float:right;
+    top: -30px;
+    left: 50px;
+ }
+
+
+.list-render>div {
+
+    container-type: inline-size;
+    container-name: activity;
+  
+      
+  }
+  
+  @container activity (min-width: 400px) {
+    form.survey-view .activity-row fieldset {
+       display: inline-block;
+       min-inline-size: unset;
+       width: min-content;
+       vertical-align: bottom;
+       margin: 20px;
+       margin-top: 0;
+    }
+
+    form.survey-view [data-location-type="2"] .activity-row fieldset.activity-time-location+fieldset {
+        float: left;
+    }
+
+    form.survey-view .activity-row fieldset.activity-time-location {
+        vertical-align: top;
+    }
+  }
+  
