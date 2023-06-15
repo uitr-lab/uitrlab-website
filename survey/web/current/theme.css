@@ -1602,6 +1602,25 @@ button.use-location-btn {
 }
 
 
+.google-map-overlay:after {
+    content:"Click the map to set location";
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+    color: #174594;
+    font-size: calc( max(1vw, 1vh) + 10px );
+    font-family: Arial;
+    text-shadow: 0 0 3px #ffffff78, 0 0 7px #ffffffbf;
+}
+
+
+.google-map-overlay.has-location:after {
+    display: none;
+}
+
+
+
 
 
 button.close-btn, button.use-location-btn {
