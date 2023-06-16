@@ -1188,8 +1188,8 @@ select {
     opacity:0;
 }
 
-.resizing.schedule-item +.schedule-item>.drag-end, .schedule-item:has(+.resizing.schedule-item)>.drag-end {
-    opacity:0;
+.resizing.schedule-item +.schedule-item>.drag-end, .schedule-item:has(+.resizing.schedule-item)>.drag-end, .schedule-vis .schedule-item.resizing>.drag-end {
+    opacity:0 !important;
 }
 
 
@@ -1207,8 +1207,23 @@ select {
 }
 
 
+.schedule-item.resizing.z-dur .duration:before {
+    display: none;
+}
+
+.schedule-item.resizing.z-dur .duration:after, 
+.schedule-item.resizing.dur--1 .duration:after, 
+.schedule-item.resizing.dur-1 .duration:after {
+    transition: height 0s;
+}
+
+.schedule-vis .resizing ~ button {
+    visibility:hidden;
+}
+
+
 .schedule-item.resizing .duration:before {
-    content: "add " var(--addDuration) "m";
+    content: "add " var(--addDuration) "";
     position: absolute;
     top: calc( 100% + var(--resizeHeight) - 40px );
     color: #767676;
@@ -1219,6 +1234,10 @@ select {
 }
 
 
+
+
+
+
 .schedule-item.resizing.rs-neg .duration:after {
     height: calc( var(--durationHeight, 0px) + var(--resizeHeight, 0px) + 75px);
     background: linear-gradient(180deg, #ffffff26, #ffffff6b);
@@ -1227,12 +1246,21 @@ select {
 }
 
 .schedule-item.resizing.rs-neg .duration:before {
-    content: "" var(--addDuration) "m";
+    content: "" var(--addDuration) "";
+    
 }
 
 .schedule-item.resizing {
     margin-bottom: calc( var(--resizeHeight, 0px) + 10px );
     transition: margin-bottom 0.2s;
+}
+
+.schedule-vis .schedule-item.resizing{
+    --label: attr(data-start-time-am-pm)" - " var(--dragEndTime)
+}
+
+.schedule-vis .schedule-item.resizing[data-index="0"]{
+    --label: " -- " var(--dragEndTime)
 }
 
 .duration:after {
@@ -1810,7 +1838,7 @@ form.survey-view fieldset label, form.survey-view fieldset .option{
 
 
 
-span.markdown.info-icon>h3, span.markdown.info-icon>p {
+span.markdown.info-icon>h3, span.markdown.info-icon>p, span.markdown.info-icon>ul {
     display: none;
 }
 span.markdown.info-icon:before {
@@ -1843,7 +1871,7 @@ span.markdown.info-icon:hover {
     color: #174494;
 }
 
-span.markdown.info-icon:hover>h3, span.markdown.info-icon:hover>p{
+span.markdown.info-icon:hover>h3, span.markdown.info-icon:hover>p, span.markdown.info-icon:hover>ul{
     display:block;
 }
 
