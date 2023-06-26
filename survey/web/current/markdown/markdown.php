@@ -12,4 +12,4 @@ foreach(array_values(array_filter(scandir($dir), function($file){
 
 }
 
-echo json_encode(["markdown"=>$data], JSON_PRETTY_PRINT);
+echo json_encode($data, JSON_PRETTY_PRINT);
