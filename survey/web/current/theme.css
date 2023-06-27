@@ -85,6 +85,19 @@
     max-height: 20vw;
     max-height: min( 20vw, 20vh);
 }
+
+
+.intro-page.overflows div#city-art:after{
+    opacity:0.4;
+}
+.intro-page.overflows div#city-art:before{
+    opacity:0.2;
+}
+
+.intro-page div#city-art:after, .intro-page div#city-art:before{
+    transition: opacity 0.5s;
+}
+
 .intro-page .markdown {
     text-shadow: 0 0 2px #ffffff75, 0 0 5px #ffffff9c;
 }
